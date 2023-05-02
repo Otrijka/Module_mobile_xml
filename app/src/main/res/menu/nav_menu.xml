@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:title="Variables">
+        <menu>
+            <item
+                android:id="@+id/varInteger"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="Variable" />
+        </menu>
+
+    </item>
+
+    <item android:title="Math operations">
+        <menu>
+            <item
+                android:id="@+id/operatorPlus"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="Plus" />
+            <item
+                android:id="@+id/operatorMinus"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="Minus" />
+            <item
+                android:id="@+id/operatorMultiply"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="Multiply" />
+            <item
+                android:id="@+id/operatorDivide"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="Divide" />
+            <item
+                android:id="@+id/operatorMod"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="Mod" />
+
+        </menu>
+
+    </item>
+
+</menu>
