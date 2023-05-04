@@ -1,15 +1,17 @@
 package com.example.module_mobile_xml
 
 import android.util.Log
+import java.util.Stack
 
-var variableList = mutableListOf<Pair<String, Long>>()
+var variablesMap = mutableMapOf<String,Long>()
 
-open class Interpriter {
-
+class Interpriter {
+    var variablesStack = Stack<String>()
+    var actionsStack = Stack<String>()
 }
 
 
-class Variable(_name: String, _data: String) : Interpriter() {
+class Variable(_name: String, _data: String) {
     val name: String
     val data: Long
 
@@ -20,11 +22,7 @@ class Variable(_name: String, _data: String) : Interpriter() {
     }
 
     fun addToList() {
-        variableList.add(Pair(name, data))
-        Log.d("app", "var has added!! ${variableList[0]}")
+        variablesMap.put(name,data)
+        Log.d("app", variablesMap.toString())
     }
-}
-
-class Math : Interpriter() {
-
 }

@@ -10,5 +10,14 @@
 
     <color name="blue_400">#19d9fd</color>
     <color name="green_400">#2aeb56</color>
-    <color name="blue">#1431e3</color>
+    <color name="blue">#8998F6</color>
+
+    <color name="drawer_color">#FF8998F6</color>
+    <color name="code_place">#6DABE2</color>
+    <color name="text_color">#031067</color>
+    <color name="button_color">#2636A6</color>
+    <color name="variable_block">#3FD8AD</color>
+
+    <color name="start_menu_text_color">#FFFFFF</color>
+
 </resources>

@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.CreateVariableFragmentBinding
 
@@ -36,19 +36,19 @@ class CreateVariableFragment : Fragment() {
             val block = TextView(context)
 
             with(block) {
-                text = "$varName = $varData"
+                text = "VAR: $varName = $varData;"
 
                 val params: LinearLayout.LayoutParams =
                     LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
-                params.setMargins(10, 10, 10, 10)
+                params.setMargins(5, 0, 0, 15)
 
                 layoutParams = params
-                setTextColor(Color.BLUE)
-                setBackgroundResource(R.drawable.button_start_border)
-                setTextSize(22f)
+                setBackgroundResource(R.drawable.variable_block)
+                setTextSize(20f)
+
                 setPadding(25, 20, 25, 20)
             }
 
@@ -60,8 +60,10 @@ class CreateVariableFragment : Fragment() {
             val varName = binding.nameHolder.text.toString()
             val varData = binding.dataHolder.text.toString()
 
-            if (varName.length != 0 && varData.length != 0) {
+            if (varName.length != 0 && varData.length != 0 && !varName.first().isDigit()) {
+                variablesMap.put(varName, varData.toLong())
                 makeBlockVar(varName, varData)
+                Toast.makeText(context, "\"$varName\" has added!", Toast.LENGTH_SHORT).show()
             }
             activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
         }

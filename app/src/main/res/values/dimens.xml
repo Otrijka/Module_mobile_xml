@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="header_text_size">50sp</dimen>
+    <dimen name="big_text_size">30sp</dimen>
+    <dimen name="normal_text_size">16sp</dimen>
+
+
+
+
+
+    <dimen name="block_text_size">22f</dimen>
+
+
+</resources>
