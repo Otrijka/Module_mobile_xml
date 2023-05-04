@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/variable_block"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -23,12 +24,12 @@
                 android:id="@+id/nameHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/rounded_border"
                 android:hint="Название переменной"
                 android:inputType="textPersonName"
-                android:maxLength="20"
 
+                android:maxLength="20"
                 android:maxLines="1"
                 android:textColorHint="@color/blue" />
 
@@ -42,7 +43,7 @@
                     android:id="@+id/dataHolder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/rounded_border"
                     android:hint="Значение"
                     android:inputType="number"
@@ -58,6 +59,7 @@
             android:id="@+id/createVariableButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:backgroundTint="@color/button_color"
             android:text="Создать"
             android:textAllCaps="false"

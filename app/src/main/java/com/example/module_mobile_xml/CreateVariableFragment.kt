@@ -43,13 +43,13 @@ class CreateVariableFragment : Fragment() {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
-                params.setMargins(5, 0, 0, 15)
+                params.setMargins(10, 0, 0, 25)
 
                 layoutParams = params
                 setBackgroundResource(R.drawable.variable_block)
                 setTextSize(20f)
 
-                setPadding(25, 20, 25, 20)
+                setPadding(15, 15, 15, 15)
             }
 
             layout?.addView(block)

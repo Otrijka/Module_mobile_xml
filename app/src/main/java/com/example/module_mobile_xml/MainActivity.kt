@@ -25,6 +25,15 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        binding
+        binding.bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.blocks_button -> {
+                    binding.drawer.openDrawer(GravityCompat.END)
+                }
+            }
+            true
+        }
 
     }
 
