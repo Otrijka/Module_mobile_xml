@@ -1,10 +1,4 @@
 <resources>
     <string name="app_name">Code Block</string>
 
-    <string-array name="varTypes">
-        <item>Integer</item>
-        <item>Double</item>
-        <item>String</item>
-    </string-array>
-
 </resources>

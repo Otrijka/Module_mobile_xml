@@ -2,6 +2,7 @@ package com.example.module_mobile_xml
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.ActivityMainBinding
@@ -14,12 +15,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         //Листенеры на элементы менюшки
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.varInteger -> {
-                    openFragment(CreateVariableFragment.newInstance(), R.id.placeHolder)
+                    openFragment(CreateVariableFragment.newInstance(), R.id.createVarFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.printVar -> {
+                    openFragment(PrintVariableFragment.newInstance(), R.id.printVarFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
             }
