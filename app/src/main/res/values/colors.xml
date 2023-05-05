@@ -17,7 +17,8 @@
     <color name="bottom_nav_color">#226BAC</color>
     <color name="text_color">#031067</color>
     <color name="button_color">#2636A6</color>
-    <color name="variable_block">#3FD8AD</color>
+    <color name="variable_block">#2CECAF</color>
+    <color name="border_color">#A0E8E8</color>
 
     <color name="start_menu_text_color">#FFFFFF</color>
 

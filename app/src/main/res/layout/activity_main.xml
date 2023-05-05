@@ -17,6 +17,7 @@
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
             android:alpha="1"
             app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +36,10 @@
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:background="@drawable/bottom_nav_bg"
+            app:itemIconTint="@color/start_menu_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32999998">
+            app:layout_constraintVertical_bias="0.39">
 
         </FrameLayout>
 
@@ -66,7 +70,7 @@
         android:background="@drawable/drawer_bg"
         android:backgroundTint="@color/drawer_color"
         app:itemIconSize="50dp"
-        app:itemIconTint="@color/white"
+        app:itemIconTint="@color/start_menu_text_color"
         app:itemTextColor="@color/white"
         app:menu="@menu/nav_menu" />
 

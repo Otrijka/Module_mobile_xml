@@ -5,7 +5,6 @@
     <solid android:color="@color/bottom_nav_color" />
     <!-- View border color and width -->
 
-
     <!-- The radius makes the corners rounded -->
     <corners
         android:topLeftRadius="20dp"

@@ -47,7 +47,7 @@ class CreateVariableFragment : Fragment() {
 
                 layoutParams = params
                 setBackgroundResource(R.drawable.variable_block)
-                setTextSize(20f)
+                setTextSize(resources.getDimension(R.dimen.block_text_size))
 
                 setPadding(15, 15, 15, 15)
             }
@@ -63,8 +63,8 @@ class CreateVariableFragment : Fragment() {
             if (varName.length != 0 && varData.length != 0 && !varName.first().isDigit()) {
                 variablesMap.put(varName, varData.toLong())
                 makeBlockVar(varName, varData)
-                Toast.makeText(context, "\"$varName\" has added!", Toast.LENGTH_SHORT).show()
             }
+
             activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
         }
     }

@@ -19,13 +19,12 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.varInteger -> {
-                    binding.drawer.closeDrawer(GravityCompat.END)
                     openFragment(CreateVariableFragment.newInstance(), R.id.placeHolder)
+                    binding.drawer.closeDrawer(GravityCompat.END)
                 }
             }
             true
         }
-        binding
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.blocks_button -> {
