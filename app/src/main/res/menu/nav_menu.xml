@@ -17,25 +17,9 @@
     <item android:title="Math operations">
         <menu>
             <item
-                android:id="@+id/operatorPlus"
+                android:id="@+id/mathExpression"
                 android:icon="@drawable/ic_launcher_foreground"
-                android:title="Plus" />
-            <item
-                android:id="@+id/operatorMinus"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="Minus" />
-            <item
-                android:id="@+id/operatorMultiply"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="Multiply" />
-            <item
-                android:id="@+id/operatorDivide"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="Divide" />
-            <item
-                android:id="@+id/operatorMod"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="Mod" />
+                android:title="Math expression" />
 
         </menu>
 

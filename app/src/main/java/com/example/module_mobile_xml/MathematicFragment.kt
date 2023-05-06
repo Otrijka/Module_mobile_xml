@@ -8,26 +8,30 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.module_mobile_xml.databinding.PrintVariableFragmentBinding
+import com.example.module_mobile_xml.databinding.MathematicFragmentBinding
+import normilizeString
+import toReversePolishNotation
+import java.util.Stack
 
-class PrintVariableFragment : Fragment() {
+class MathematicFragment : Fragment() {
 
-    lateinit var binding: PrintVariableFragmentBinding
+    lateinit var binding: MathematicFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = PrintVariableFragmentBinding.inflate(inflater)
+        binding = MathematicFragmentBinding.inflate(inflater)
 
-        fun makeBlockPrintVar(varName: String?) {
+        fun makeBlockMathExp(varName: String, expression: String) {
+
             val layout = activity?.findViewById<LinearLayout>(R.id.codePlace)
             val block = TextView(context)
 
+
             with(block) {
-                text = "Print($varName)"
+                text = "$varName = $expression"
 
                 val params: LinearLayout.LayoutParams =
                     LinearLayout.LayoutParams(
@@ -37,26 +41,27 @@ class PrintVariableFragment : Fragment() {
                 params.setMargins(0, 0, 0, 25)
 
                 layoutParams = params
-                setBackgroundResource(R.drawable.print_variable_block)
+                setBackgroundResource(R.drawable.math_expression_block)
                 setTextSize(resources.getDimension(R.dimen.block_text_size))
 
                 setPadding(15, 15, 15, 15)
             }
-
             layout?.addView(block)
         }
 
-        val varListForPrint = binding.varList
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, varNames)
-        varListForPrint.adapter = adapter
+        binding.varMenu.adapter = adapter
 
-        varListForPrint.setOnItemClickListener { parent, view, position, id ->
-            val selectedItemName = parent.getItemAtPosition(position) as String
+
+        binding.createBlock.setOnClickListener {
+            val inputExp = normilizeString(binding.mathExpInput.text.toString())
+            val varName = binding.varMenu.selectedItem.toString()
+
+            str += toReversePolishNotation(inputExp)
+            Log.d("app", str)
+            makeBlockMathExp(varName, inputExp)
             activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
-            makeBlockPrintVar(selectedItemName)
-            str += "$selectedItemName print "
-            Log.d("app", "str: " + str)
         }
 
         return binding.root
@@ -64,6 +69,7 @@ class PrintVariableFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = PrintVariableFragment()
+        fun newInstance() = MathematicFragment()
     }
+
 }

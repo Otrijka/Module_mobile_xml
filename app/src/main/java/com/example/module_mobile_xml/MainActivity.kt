@@ -15,24 +15,34 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        //Листенеры на элементы менюшки
+
+        //Листенеры на элементы drawer
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.varInteger -> {
-                    openFragment(CreateVariableFragment.newInstance(), R.id.createVarFragment)
+                    openFragment(CreateVariableFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.printVar -> {
-                    openFragment(PrintVariableFragment.newInstance(), R.id.printVarFragment)
+                    openFragment(PrintVariableFragment.newInstance(), R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.mathExpression ->{
+                    openFragment(MathematicFragment.newInstance(),R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
             }
             true
         }
+
+        //Листенеры на элементы bottomNav
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.blocks_button -> {
                     binding.drawer.openDrawer(GravityCompat.END)
+                }
+                R.id.compile_button ->{
+                    compile()
                 }
             }
             true

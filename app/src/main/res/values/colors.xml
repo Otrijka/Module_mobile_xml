@@ -19,6 +19,7 @@
     <color name="button_color">#2636A6</color>
 
     <color name="variable_block">#2CECAF</color>
+    <color name="math_expression_block">#0EB17D</color>
     <color name="print_variable_block">#15D63F</color>
 
 

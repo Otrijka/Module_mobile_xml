@@ -2,6 +2,7 @@ package com.example.module_mobile_xml
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +11,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.CreateVariableFragmentBinding
-
 class CreateVariableFragment : Fragment() {
 
     lateinit var binding: CreateVariableFragmentBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,33 +35,35 @@ class CreateVariableFragment : Fragment() {
             val block = TextView(context)
 
             with(block) {
-                text = "VAR: $varName = $varData;"
+                text = "VAR: $varName = $varData"
 
                 val params: LinearLayout.LayoutParams =
                     LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
-                params.setMargins(10, 0, 0, 25)
+                params.setMargins(0, 0, 0, 25)
 
                 layoutParams = params
                 setBackgroundResource(R.drawable.variable_block)
                 setTextSize(resources.getDimension(R.dimen.block_text_size))
-
                 setPadding(15, 15, 15, 15)
             }
 
             layout?.addView(block)
         }
 
-        binding.createVariableButton.setOnClickListener {
+        binding.createBlock.setOnClickListener {
 
             val varName = binding.nameHolder.text.toString()
             val varData = binding.dataHolder.text.toString()
 
             if (varName.length != 0 && varData.length != 0 && !varName.first().isDigit()) {
-                variablesMap.put(varName, varData.toLong())
                 makeBlockVar(varName, varData)
+                str+="$varName $varData = "
+                varNames.add(varName)
+                Log.d("app", "str: " + str)
+
             }
 
             activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
