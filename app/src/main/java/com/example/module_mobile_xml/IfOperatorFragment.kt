@@ -6,36 +6,46 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.CreateVariableFragmentBinding
-class CreateVariableFragment : Fragment() {
+import com.example.module_mobile_xml.databinding.IfOperatorFragmentBinding
+import normilizeString
 
-    lateinit var binding: CreateVariableFragmentBinding
+class IfOperatorFragment : Fragment() {
+
+    lateinit var binding: IfOperatorFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = CreateVariableFragmentBinding.inflate(inflater)
+        binding = IfOperatorFragmentBinding.inflate(inflater)
+
+        val conditions = arrayListOf("==", "!=", ">", "<", ">=", "<=")
+        val adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, conditions)
+        binding.conditionSpinner.adapter = adapter
+
         return binding.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = CreateVariableFragment()
+        fun newInstance() = IfOperatorFragment()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fun makeBlockVar(varName: String?, varData: String?) {
+        fun makeBlockVar(varName1: String?, condition: String?, varName2: String?) {
             val layout = activity?.findViewById<LinearLayout>(R.id.codePlace)
             val block = TextView(context)
 
             with(block) {
-                text = "VAR: $varName = $varData"
+                text = "if ($varName1 $condition $varName2)"
 
                 val params: LinearLayout.LayoutParams =
                     LinearLayout.LayoutParams(
@@ -54,20 +64,18 @@ class CreateVariableFragment : Fragment() {
         }
 
         binding.createBlockButton.setOnClickListener {
-
-            val varName = binding.nameHolder.text.toString()
-            val varData = binding.dataHolder.text.toString()
-
-            if (varName.length != 0 && varData.length != 0 && !varName.first().isDigit()) {
-                makeBlockVar(varName, varData)
-                str+="$varName $varData = "
-                varNames.add(varName)
-                variablesMap.put(varName,varData.toLong())
-                Log.d("app", "str: " + str)
-
+            val var1 = binding.var1Input.text.toString()
+            val var2 = binding.var2Input.text.toString()
+            val condition = binding.conditionSpinner.selectedItem.toString()
+            if (var1 in variablesMap.keys && var2 in variablesMap.keys) {
+                val tempStr = "$var1 $var2 $condition "
+                makeBlockVar(var1, condition, var2)
+                activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+            } else {
+                activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
             }
-
-            activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
         }
+
+
     }
 }

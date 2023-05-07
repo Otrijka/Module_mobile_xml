@@ -49,19 +49,28 @@ class MathematicFragment : Fragment() {
             layout?.addView(block)
         }
 
-
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, varNames)
         binding.varMenu.adapter = adapter
 
-
-        binding.createBlock.setOnClickListener {
-            val inputExp = normilizeString(binding.mathExpInput.text.toString())
-            val varName = binding.varMenu.selectedItem.toString()
-
-            str += varName + " " + toReversePolishNotation(inputExp) + " = "
-            Log.d("app", str)
-            makeBlockMathExp(varName, inputExp)
-            activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
+        binding.createBlockButton.setOnClickListener {
+            try {
+                val varName = binding.varMenu.selectedItem.toString()
+                var inputExp = binding.mathExpInput.text.toString()
+                if (inputExp.length != 0) {
+                    Log.d("app", "good")
+                    inputExp = normilizeString(inputExp)
+                    str += varName + " " + toReversePolishNotation(inputExp) + " = "
+                    makeBlockMathExp(varName, inputExp)
+                    activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)
+                        ?.commit()
+                } else {
+                    Log.d("app", "not good")
+                    activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)
+                        ?.commit()
+                }
+            } catch (e: java.lang.Exception) {
+                activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
+            }
         }
 
         return binding.root

@@ -1,5 +1,6 @@
 package com.example.module_mobile_xml
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity() {
                     openFragment(MathematicFragment.newInstance(),R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
+                R.id.ifOperator ->{
+                    openFragment(IfOperatorFragment.newInstance(),R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
             }
             true
         }
@@ -42,6 +47,12 @@ class MainActivity : AppCompatActivity() {
                     binding.drawer.openDrawer(GravityCompat.END)
                 }
                 R.id.compile_button ->{
+                    val intent = Intent(this, CompilerActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(
+                        androidx.appcompat.R.anim.abc_slide_in_bottom,
+                        androidx.appcompat.R.anim.abc_slide_out_top
+                    )
                     compile()
                 }
             }

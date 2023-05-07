@@ -8,24 +8,24 @@ var variablesMap = mutableMapOf<String, Long>()
 var str = ""
 
 fun compile() {
-    Log.d("app", "Compile starting")
+    Log.d("app", "-----------------\nCompile starting")
 
     Log.d("app", "str: " + str)
 
     var varStack = Stack<String>()
-    var actionStack = Stack<String>()
 
-    parseStr(varStack, actionStack)
-    variablesMap.clear()
+    parseStr(varStack)
+    Log.d("app", "varMap: " + variablesMap)
+    //variablesMap.clear()
+    //varNames.clear()
     Log.d("app", "varStack: " + varStack.toString())
 
-    Log.d("app", "Compile end")
+    Log.d("app", "Compile end\n-----------------")
 }
 
 
-fun parseStr(varStack: Stack<String>, actionStack: Stack<String>) {
+fun parseStr(varStack: Stack<String>) {
 
-    //str = "a 1 = b 2 = c 3 = a 10 + b 10 + c 10 + a print b print c print "
     val actionList = arrayListOf("+", "-", "*", "/", "=" ,"^", "print")
 
     for (i in str.split(" ")) {

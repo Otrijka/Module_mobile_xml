@@ -1,3 +1,5 @@
+import android.app.Activity
+import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.varNames
 import java.util.*
 

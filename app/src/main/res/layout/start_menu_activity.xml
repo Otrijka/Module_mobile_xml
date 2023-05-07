@@ -36,7 +36,7 @@
         android:shadowColor="@color/blue"
 
         android:shadowRadius="2"
-        android:text="Start"
+        android:text="@string/start_button_text"
         android:textColor="@color/white"
         android:textSize="@dimen/big_text_size"
         android:textStyle="bold"

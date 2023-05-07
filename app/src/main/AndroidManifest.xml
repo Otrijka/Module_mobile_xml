@@ -11,8 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Module_mobile_xml"
         tools:targetApi="31">
-
-        <!-- Splash screen-->
+        <activity
+            android:name=".CompilerActivity"
+            android:exported="false" />
+        <!-- Splash screen -->
         <activity
             android:name=".SplashScreen"
             android:exported="true"
@@ -22,16 +24,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Start menu-->
+        </activity> <!-- Start menu -->
         <activity
             android:name=".StartMenu"
-            android:exported="false" />
-
-        <!-- Main activity-->
-        <activity
-            android:name=".MainActivity" />
+            android:exported="false" /> <!-- Main activity -->
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

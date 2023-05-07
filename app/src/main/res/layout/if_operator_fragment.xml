@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".IfOperatorFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/math_expression_block"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/name_operator_if"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="if" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_border">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/var1Input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="var"
+                    android:textAlignment="center" />
+
+                <Spinner
+                    android:id="@+id/conditionSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/var2Input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="var"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/then_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="then" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_border"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Spinner
+                    android:id="@+id/varMenuThen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/equalTextThen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" = " />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mathExpInputThen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_math_exp_block" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/elseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="else" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_border"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Spinner
+                    android:id="@+id/varMenuElse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/equalTextElse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" = " />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mathExpInputElse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_math_exp_block" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/createBlockButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/button_color"
+            android:text="@string/make_block_button_text"
+            android:textAllCaps="false"
+            android:textSize="@dimen/normal_text_size" />
+
+    </LinearLayout>
+</FrameLayout>

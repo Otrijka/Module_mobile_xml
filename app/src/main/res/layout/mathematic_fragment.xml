@@ -12,12 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/variable_block"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:background="@drawable/rounded_border"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -29,22 +30,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" = " />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mathExpInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Math expression" />
+                android:hint="@string/hint_math_exp_block" />
+
         </LinearLayout>
 
         <Button
-            android:id="@+id/createBlock"
+            android:id="@+id/createBlockButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:backgroundTint="@color/button_color"
-            android:text="Создать"
+            android:text="@string/make_block_button_text"
             android:textAllCaps="false"
             android:textSize="@dimen/normal_text_size" />
 

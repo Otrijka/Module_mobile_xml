@@ -4,7 +4,7 @@
     tools:showIn="navigation_view">
 
     <item
-        android:title="Variables">
+        android:title="Variable">
         <menu>
             <item
                 android:id="@+id/varInteger"
@@ -14,13 +14,23 @@
 
     </item>
 
-    <item android:title="Math operations">
+    <item android:title="Math expression">
         <menu>
             <item
                 android:id="@+id/mathExpression"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="Math expression" />
 
+        </menu>
+
+    </item>
+
+    <item android:title="Cycles">
+
+        <menu>
+            <item android:id="@+id/ifOperator"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="If"/>
         </menu>
 
     </item>
