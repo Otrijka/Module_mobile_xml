@@ -6,6 +6,8 @@ import java.util.Stack
 var varNames = arrayListOf<String>()
 var variablesMap = mutableMapOf<String, Long>()
 var str = ""
+var lastBlock = arrayListOf<Pair<Int,String>>()
+var outPutList = ArrayList<String>()
 
 fun compile() {
     Log.d("app", "-----------------\nCompile starting")
@@ -25,7 +27,7 @@ fun compile() {
 
 
 fun parseStr(varStack: Stack<String>) {
-
+    outPutList.clear()
     val actionList = arrayListOf("+", "-", "*", "/", "=" ,"^", "print")
 
     for (i in str.split(" ")) {
@@ -67,6 +69,7 @@ fun parseStr(varStack: Stack<String>) {
                 }
                 "print" -> {
                     val rightVar = varStack.pop()
+                    outPutList.add(variablesMap[rightVar].toString())
                     Log.d("app", "$rightVar = " + variablesMap[rightVar].toString())
                 }
             }

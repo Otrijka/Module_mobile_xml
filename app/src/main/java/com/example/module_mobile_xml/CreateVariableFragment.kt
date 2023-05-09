@@ -60,11 +60,14 @@ class CreateVariableFragment : Fragment() {
 
             if (varName.length != 0 && varData.length != 0 && !varName.first().isDigit()) {
                 makeBlockVar(varName, varData)
-                str+="$varName $varData = "
-                varNames.add(varName)
-                variablesMap.put(varName,varData.toLong())
-                Log.d("app", "str: " + str)
+                val temp = "$varName $varData = "
+                str+=temp
+                if (varName !in varNames){
+                    varNames.add(varName)
+                }
+                //variablesMap.put(varName,varData.toLong())
 
+                lastBlock.add(Pair(lastBlock.size + 1, str))
             }
 
             activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()

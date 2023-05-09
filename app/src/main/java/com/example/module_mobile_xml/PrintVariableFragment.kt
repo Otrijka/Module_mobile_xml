@@ -55,8 +55,9 @@ class PrintVariableFragment : Fragment() {
             val selectedItemName = parent.getItemAtPosition(position) as String
             activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
             makeBlockPrintVar(selectedItemName)
-            str += "$selectedItemName print "
-            Log.d("app", "str: " + str)
+            val temp = "$selectedItemName print "
+            str += temp
+            lastBlock.add(Pair(lastBlock.size + 1,str))
         }
 
         return binding.root

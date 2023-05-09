@@ -25,12 +25,24 @@
 
     </item>
 
-    <item android:title="Cycles">
+    <item android:title="If operator">
 
         <menu>
             <item android:id="@+id/ifOperator"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="If"/>
+            <item android:id="@+id/thenOperator"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="then"/>
+            <item android:id="@+id/elseOperator"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="else"/>
+            <item android:id="@+id/beginOperator"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="Begin"/>
+            <item android:id="@+id/endOperator"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="End"/>
         </menu>
 
     </item>

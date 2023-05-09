@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.ActivityMainBinding
@@ -17,6 +19,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        fun makeBlockBeginOrElse(operatorName: String) {
+
+            val parentLayout = findViewById<LinearLayout>(R.id.codePlace)
+            val block = TextView(this)
+
+            with(block) {
+                text = operatorName
+
+                val params: LinearLayout.LayoutParams =
+                    LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                params.setMargins(0, 0, 0, 25)
+
+                layoutParams = params
+                setBackgroundResource(R.drawable.math_expression_block)
+                setTextSize(resources.getDimension(R.dimen.block_text_size))
+                setPadding(15, 15, 15, 15)
+            }
+
+            parentLayout?.addView(block)
+        }
         //Листенеры на элементы drawer
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -28,12 +53,34 @@ class MainActivity : AppCompatActivity() {
                     openFragment(PrintVariableFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.mathExpression ->{
-                    openFragment(MathematicFragment.newInstance(),R.id.blockSettingsFragment)
+                R.id.mathExpression -> {
+                    openFragment(MathematicFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.ifOperator ->{
-                    openFragment(IfOperatorFragment.newInstance(),R.id.blockSettingsFragment)
+                R.id.ifOperator -> {
+                    openFragment(IfOperatorFragment.newInstance(), R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.beginOperator -> {
+                    makeBlockBeginOrElse("begin")
+                    str += "begin "
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.endOperator -> {
+                    makeBlockBeginOrElse("end")
+                    str += "end "
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.thenOperator -> {
+                    makeBlockBeginOrElse("then")
+                    str += "then "
+                    lastBlock.add(Pair(lastBlock.size+1,str))
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.elseOperator -> {
+                    makeBlockBeginOrElse("else")
+                    str += "else "
+                    lastBlock.add(Pair(lastBlock.size+1,str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
             }
@@ -46,14 +93,25 @@ class MainActivity : AppCompatActivity() {
                 R.id.blocks_button -> {
                     binding.drawer.openDrawer(GravityCompat.END)
                 }
-                R.id.compile_button ->{
-                    val intent = Intent(this, CompilerActivity::class.java)
+                R.id.compile_button -> {
+                    compile()
+                    val intent = Intent(this@MainActivity, CompilerActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(
                         androidx.appcompat.R.anim.abc_slide_in_bottom,
                         androidx.appcompat.R.anim.abc_slide_out_top
                     )
-                    compile()
+                }
+                R.id.settings_button -> {
+
+                    binding.codePlace.removeViewAt(lastBlock[lastBlock.size - 1].first - 1)
+                    if (lastBlock.size - 2 >= 0) {
+                        str = lastBlock[lastBlock.size - 2].second
+                    }else{
+                        str = ""
+                    }
+                    lastBlock.removeLast()
+
                 }
             }
             true

@@ -18,9 +18,10 @@
     <color name="text_color">#031067</color>
     <color name="button_color">#2636A6</color>
 
-    <color name="variable_block">#2CECAF</color>
-    <color name="math_expression_block">#0EB17D</color>
-    <color name="print_variable_block">#15D63F</color>
+    <color name="variable_block">#4DFF00</color>
+    <color name="math_expression_block">#29BBC8</color>
+    <color name="print_variable_block">#DFA800</color>
+    <color name="if_block">#EAFF30</color>
 
 
     <color name="border_color">#A0E8E8</color>

@@ -57,14 +57,16 @@ class MathematicFragment : Fragment() {
                 val varName = binding.varMenu.selectedItem.toString()
                 var inputExp = binding.mathExpInput.text.toString()
                 if (inputExp.length != 0) {
-                    Log.d("app", "good")
+
                     inputExp = normilizeString(inputExp)
-                    str += varName + " " + toReversePolishNotation(inputExp) + " = "
+                    val temp = varName + " " + toReversePolishNotation(inputExp) + " = "
+                    str += temp
                     makeBlockMathExp(varName, inputExp)
+                    lastBlock.add(Pair(lastBlock.size + 1,str))
                     activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)
                         ?.commit()
                 } else {
-                    Log.d("app", "not good")
+
                     activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)
                         ?.commit()
                 }
