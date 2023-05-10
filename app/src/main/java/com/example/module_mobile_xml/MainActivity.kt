@@ -64,11 +64,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.beginOperator -> {
                     makeBlockBeginOrElse("begin")
                     str += "begin "
+                    lastBlock.add(Pair(lastBlock.size+1,str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.endOperator -> {
                     makeBlockBeginOrElse("end")
                     str += "end "
+                    lastBlock.add(Pair(lastBlock.size+1,str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.thenOperator -> {
