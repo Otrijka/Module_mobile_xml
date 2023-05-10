@@ -14,6 +14,12 @@ class StartMenu : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
 
         binding.startButton.setOnClickListener {
+            // TODO: Переписать удаление данных при выходе с активити
+            varNames.clear()
+            variablesMap.clear()
+            str = ""
+            lastBlock.clear()
+            outPutList.clear()
             startActivity(intent)
             overridePendingTransition(
                 androidx.appcompat.R.anim.abc_slide_in_bottom,
