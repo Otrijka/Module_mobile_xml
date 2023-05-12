@@ -11,6 +11,13 @@ fun normilizeString(text: String): String {
     return newText
 }
 
+fun replaceWhiteSpaceOnDots(input: String) : String{
+    val output = input.replace(Regex("\\[\\s*([^\\]\\s]+(?:\\s+[^\\]\\s]+)*)\\s*\\]"), { match ->
+        match.value.replace(" ", ",")
+    })
+    return output
+}
+
 
 fun toReversePolishNotation(expression: String): String {
     val outputQueue = mutableListOf<String>()

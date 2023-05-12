@@ -10,25 +10,26 @@ var lastBlock = arrayListOf<Pair<Int,String>>()
 var outPutList = ArrayList<String>()
 
 fun compile() {
+
+
+    parseStr(str)
+
     Log.d("app", "-----------------\nCompile starting")
-
     Log.d("app", "str: " + str)
-
-    var varStack = Stack<String>()
-
-    parseStr(varStack)
     Log.d("app", "varMap: " + variablesMap)
-    //variablesMap.clear()
-    //varNames.clear()
-    Log.d("app", "varStack: " + varStack.toString())
-
     Log.d("app", "Compile end\n-----------------")
 }
 
 
-fun parseStr(varStack: Stack<String>) {
+fun parseStr(str: String) {
+    var varStack = Stack<String>()
+
     outPutList.clear()
-    val actionList = arrayListOf("+", "-", "*", "/", "=" ,"^", "print")
+    val actionList = arrayListOf("+", "-", "*", "/", "=" ,"^", "print", ">","=>","<","<=","==", "endIf")
+
+    fun popAtStack() : String{
+        return if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
+    }
 
     for (i in str.split(" ")) {
 
@@ -38,41 +39,79 @@ fun parseStr(varStack: Stack<String>) {
 
             when (i) {
                 "=" -> {
-                    val rightVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
+                    val rightVar = popAtStack()
                     val leftVar = varStack.pop()
                     variablesMap.put(leftVar, rightVar.toLong())
                 }
                 "+" -> {
-                    val rightVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
-                    val leftVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
                     varStack.push((leftVar.toLong() + rightVar.toLong()).toString())
                 }
                 "-" -> {
-                    val rightVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
-                    val leftVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
                     varStack.push((leftVar.toLong() - rightVar.toLong()).toString())
                 }
                 "*" -> {
-                    val rightVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
-                    val leftVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
                     varStack.push((leftVar.toLong() * rightVar.toLong()).toString())
                 }
                 "/" -> {
-                    val rightVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
-                    val leftVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
                     varStack.push((leftVar.toLong() / rightVar.toLong()).toString())
                 }
                 "^" -> {
-                    val rightVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
-                    val leftVar = if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
                     varStack.push((Math.pow(leftVar.toDouble(),rightVar.toDouble()).toLong()).toString())
+                }
+                ">" -> {
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
+                    varStack.push((leftVar.toLong() > rightVar.toLong()).toString())
+                }
+                ">=" -> {
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
+                    varStack.push((leftVar.toLong() >= rightVar.toLong()).toString())
+                }
+                "<" -> {
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
+                    varStack.push((leftVar.toLong() < rightVar.toLong()).toString())
+                }
+                "<=" -> {
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
+                    varStack.push((leftVar.toLong() <= rightVar.toLong()).toString())
+                }
+                "==" -> {
+                    val rightVar = popAtStack()
+                    val leftVar = popAtStack()
+                    varStack.push((leftVar.toLong() == rightVar.toLong()).toString())
                 }
                 "print" -> {
                     val rightVar = varStack.pop()
                     outPutList.add(variablesMap[rightVar].toString())
                     Log.d("app", "$rightVar = " + variablesMap[rightVar].toString())
                 }
+                "endIf" -> {
+                    var ELSE = varStack.pop()
+                    var THEN = varStack.pop()
+                    var FLAG = varStack.pop().toBoolean()
+                    if (FLAG == true) {
+                        THEN = THEN.replace(","," ").trim()
+                        parseStr(THEN)
+                    } else {
+                        ELSE = ELSE.replace(","," ").trim()
+                        parseStr(ELSE)
+                    }
+                }
             }
         }
     }
+    Log.d("app",varStack.toString())
 }

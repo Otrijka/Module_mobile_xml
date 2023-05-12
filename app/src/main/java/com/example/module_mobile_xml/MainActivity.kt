@@ -3,23 +3,23 @@ package com.example.module_mobile_xml
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.ActivityMainBinding
+import replaceWhiteSpaceOnDots
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        fun makeBlockBeginOrElse(operatorName: String) {
+        fun makeBlocksForIfOperator(operatorName: String) {
 
             val parentLayout = findViewById<LinearLayout>(R.id.codePlace)
             val block = TextView(this)
@@ -62,27 +62,36 @@ class MainActivity : AppCompatActivity() {
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.beginOperator -> {
-                    makeBlockBeginOrElse("begin")
-                    str += "begin "
-                    lastBlock.add(Pair(lastBlock.size+1,str))
+                    makeBlocksForIfOperator("begin")
+                    //str += "[ "
+                    lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.endOperator -> {
-                    makeBlockBeginOrElse("end")
-                    str += "end "
-                    lastBlock.add(Pair(lastBlock.size+1,str))
+                    makeBlocksForIfOperator("end")
+                    //str += "] "
+                    str = replaceWhiteSpaceOnDots(str)
+                    lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.thenOperator -> {
-                    makeBlockBeginOrElse("then")
-                    str += "then "
-                    lastBlock.add(Pair(lastBlock.size+1,str))
+                    makeBlocksForIfOperator("then")
+                    str += "[ "
+                    lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.elseOperator -> {
-                    makeBlockBeginOrElse("else")
-                    str += "else "
-                    lastBlock.add(Pair(lastBlock.size+1,str))
+                    makeBlocksForIfOperator("else")
+                    str+="] [ "
+                    str = replaceWhiteSpaceOnDots(str)
+                    lastBlock.add(Pair(lastBlock.size + 1, str))
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.endIf ->{
+                    str += "] endIf "
+                    str = replaceWhiteSpaceOnDots(str)
+                    makeBlocksForIfOperator("endIf")
+                    lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
             }
@@ -104,16 +113,16 @@ class MainActivity : AppCompatActivity() {
                         androidx.appcompat.R.anim.abc_slide_out_top
                     )
                 }
-                R.id.settings_button -> {
-
-                    binding.codePlace.removeViewAt(lastBlock[lastBlock.size - 1].first - 1)
-                    if (lastBlock.size - 2 >= 0) {
-                        str = lastBlock[lastBlock.size - 2].second
-                    }else{
-                        str = ""
+                R.id.delete_last_button -> {
+                    if (lastBlock.size != 0) {
+                        binding.codePlace.removeViewAt(lastBlock[lastBlock.size - 1].first - 1)
+                        if (lastBlock.size - 2 >= 0) {
+                            str = lastBlock[lastBlock.size - 2].second
+                        } else {
+                            str = ""
+                        }
+                        lastBlock.removeLast()
                     }
-                    lastBlock.removeLast()
-
                 }
             }
             true
