@@ -5,10 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.PrintVariableFragmentBinding
 
@@ -44,6 +41,11 @@ class PrintVariableFragment : Fragment() {
             }
 
             layout?.addView(block)
+
+            val scrollView = activity?.findViewById<ScrollView>(R.id.scrollView)
+            scrollView!!.post {
+                scrollView.scrollTo(0,scrollView.bottom)
+            }
         }
 
         val varListForPrint = binding.varList

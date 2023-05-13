@@ -13,7 +13,7 @@ var outPutList = ArrayList<String>()
 fun compile() {
 
     Log.d("app", "-----------------\nCompile starting")
-
+    outPutList.clear()
     parseStr(str)
 
     Log.d("app", "varMap: " + variablesMap)
@@ -34,11 +34,11 @@ fun parseStr(string: String) {
         str = str.dropLast(1)
     }
 
+    str = str.trim()
     str = replaceWhiteSpaceOnDots(str)
     Log.d("app", "nextStr: " + str)
     var varStack = Stack<String>()
 
-    outPutList.clear()
     val actionList =
         arrayListOf("+", "-", "*", "/", "=", "^", "print", ">", "=>", "<", "<=", "==", "endIf")
 
