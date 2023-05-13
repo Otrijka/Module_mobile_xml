@@ -3,6 +3,7 @@ package com.example.module_mobile_xml
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.GravityCompat
@@ -61,19 +62,6 @@ class MainActivity : AppCompatActivity() {
                     openFragment(IfOperatorFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.beginOperator -> {
-                    makeBlocksForIfOperator("begin")
-                    //str += "[ "
-                    lastBlock.add(Pair(lastBlock.size + 1, str))
-                    binding.drawer.closeDrawer(GravityCompat.END)
-                }
-                R.id.endOperator -> {
-                    makeBlocksForIfOperator("end")
-                    //str += "] "
-                    str = replaceWhiteSpaceOnDots(str)
-                    lastBlock.add(Pair(lastBlock.size + 1, str))
-                    binding.drawer.closeDrawer(GravityCompat.END)
-                }
                 R.id.thenOperator -> {
                     makeBlocksForIfOperator("then")
                     str += "[ "
@@ -83,13 +71,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.elseOperator -> {
                     makeBlocksForIfOperator("else")
                     str+="] [ "
-                    str = replaceWhiteSpaceOnDots(str)
                     lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.endIf ->{
                     str += "] endIf "
-                    str = replaceWhiteSpaceOnDots(str)
                     makeBlocksForIfOperator("endIf")
                     lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
@@ -105,6 +91,7 @@ class MainActivity : AppCompatActivity() {
                     binding.drawer.openDrawer(GravityCompat.END)
                 }
                 R.id.compile_button -> {
+                    variablesMap.clear()
                     compile()
                     val intent = Intent(this@MainActivity, CompilerActivity::class.java)
                     startActivity(intent)

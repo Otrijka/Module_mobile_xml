@@ -37,12 +37,6 @@
             <item android:id="@+id/elseOperator"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="else"/>
-            <item android:id="@+id/beginOperator"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="begin"/>
-            <item android:id="@+id/endOperator"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="end"/>
             <item android:id="@+id/endIf"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="endIf"/>
