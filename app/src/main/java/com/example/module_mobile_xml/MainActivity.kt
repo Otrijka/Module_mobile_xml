@@ -3,13 +3,11 @@ package com.example.module_mobile_xml
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.ActivityMainBinding
-import replaceWhiteSpaceOnDots
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        fun makeBlocksForIfOperator(operatorName: String, backgroundID : Int, textSize : Int) {
+        fun makeCustomBlock(operatorName: String, backgroundID : Int, textSize : Int) {
 
             val parentLayout = findViewById<LinearLayout>(R.id.codePlace)
             val block = TextView(this)
@@ -62,22 +60,56 @@ class MainActivity : AppCompatActivity() {
                     openFragment(IfOperatorFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
+                R.id.whileOperator ->{
+                    openFragment(WhileFragment.newInstance(), R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.endWhile ->{
+                    makeCustomBlock("endWhile", R.drawable.while_block, R.dimen.little_block_text_size)
+                    str += "] endWhile "
+                    lastBlock.add(Pair(lastBlock.size + 1, str))
+
+                    val scrollView = binding.scrollView
+                    scrollView.post {
+                        scrollView.scrollTo(0,scrollView.bottom)
+                    }
+
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
                 R.id.thenOperator -> {
-                    makeBlocksForIfOperator("then", R.drawable.math_expression_block, R.dimen.little_block_text_size)
+                    makeCustomBlock("then", R.drawable.then_block, R.dimen.little_block_text_size)
                     str += "[ "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
+
+                    val scrollView = binding.scrollView
+                    scrollView.post {
+                        scrollView.scrollTo(0,scrollView.bottom)
+                    }
+
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.elseOperator -> {
-                    makeBlocksForIfOperator("else", R.drawable.math_expression_block, R.dimen.little_block_text_size)
+                    makeCustomBlock("else", R.drawable.else_block, R.dimen.little_block_text_size)
                     str+="] [ "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
+
+                    val scrollView = binding.scrollView
+                    scrollView.post {
+                        scrollView.scrollTo(0,scrollView.bottom)
+                    }
+
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.endIf ->{
                     str += "] endIf "
-                    makeBlocksForIfOperator("endIf", R.drawable.math_expression_block, R.dimen.little_block_text_size)
+                    makeCustomBlock("endIf", R.drawable.endif_block, R.dimen.little_block_text_size)
                     lastBlock.add(Pair(lastBlock.size + 1, str))
+
+                    val scrollView = binding.scrollView
+                    scrollView.post {
+                        scrollView.scrollTo(0,scrollView.bottom)
+                    }
+
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
             }

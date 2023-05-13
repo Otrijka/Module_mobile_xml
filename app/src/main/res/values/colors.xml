@@ -20,9 +20,17 @@
 
     <color name="variable_block">#4DFF00</color>
     <color name="math_expression_block">#29BBC8</color>
-    <color name="print_variable_block">#DFA800</color>
-    <color name="if_block">#EAFF30</color>
+    <color name="print_variable_block">#C67108</color>
 
+
+    <color name="if_block">#EAFF30</color>
+    <color name="else_block">#F4B006</color>
+    <color name="then_block">#F4B006</color>
+    <color name="endif_block">#EAFF30</color>
+
+
+    <color name="while_block">#30FFB7</color>
+    <color name="endwhile_block">#30FFB7</color>
 
     <color name="border_color">#000000</color>
 

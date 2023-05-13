@@ -41,7 +41,7 @@ fun parseStr(string: String) {
     var varStack = Stack<String>()
 
     val actionList =
-        arrayListOf("+", "-", "*", "/", "=", "^", "print", ">", "=>", "<", "<=", "==", "endIf")
+        arrayListOf("+", "-", "*", "/", "=", "^", "print", ">", "=>", "<", "<=", "==", "endIf", "endWhile")
 
     fun popAtStack(): String {
         return if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
@@ -126,6 +126,15 @@ fun parseStr(string: String) {
                     } else {
                         ELSE = ELSE.replace(",", " ").trim()
                         parseStr(ELSE)
+                    }
+                }
+                "endWhile" ->{
+                    val DO = varStack.pop()
+                    val FLAG = varStack.pop().toBoolean()
+                    if (FLAG == true){
+                        parseStr(DO)
+                        // TODO: Придумать как сохранять логическое выражение 
+                        parseStr("a 10000 < " + DO + " endWhile ")
                     }
                 }
             }

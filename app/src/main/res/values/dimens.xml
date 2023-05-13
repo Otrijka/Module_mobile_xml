@@ -5,11 +5,8 @@
     <dimen name="normal_text_size">16sp</dimen>
 
 
-
-
-
     <dimen name="block_text_size">8sp</dimen>
-    <dimen name="little_block_text_size">6sp</dimen>
+    <dimen name="little_block_text_size">7sp</dimen>
 
 
 </resources>

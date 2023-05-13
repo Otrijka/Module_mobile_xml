@@ -44,6 +44,19 @@
 
     </item>
 
+    <item android:title="While operator">
+
+        <menu>
+            <item android:id="@+id/whileOperator"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="while"/>
+            <item android:id="@+id/endWhile"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="endWhile"/>
+        </menu>
+
+    </item>
+
     <item android:title="Output">
 
         <menu>
