@@ -9,6 +9,7 @@
 
 
     <dimen name="block_text_size">8sp</dimen>
+    <dimen name="little_block_text_size">6sp</dimen>
 
 
 </resources>

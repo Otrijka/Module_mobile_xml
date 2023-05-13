@@ -36,6 +36,7 @@ fun parseStr(string: String) {
 
     str = str.trim()
     str = replaceWhiteSpaceOnDots(str)
+
     Log.d("app", "nextStr: " + str)
     var varStack = Stack<String>()
 

@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        fun makeBlocksForIfOperator(operatorName: String) {
+        fun makeBlocksForIfOperator(operatorName: String, backgroundID : Int, textSize : Int) {
 
             val parentLayout = findViewById<LinearLayout>(R.id.codePlace)
             val block = TextView(this)
@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
                 params.setMargins(0, 0, 0, 25)
 
                 layoutParams = params
-                setBackgroundResource(R.drawable.math_expression_block)
-                setTextSize(resources.getDimension(R.dimen.block_text_size))
+                setBackgroundResource(backgroundID)
+                setTextSize(resources.getDimension(textSize))
                 setPadding(15, 15, 15, 15)
             }
 
@@ -63,20 +63,20 @@ class MainActivity : AppCompatActivity() {
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.thenOperator -> {
-                    makeBlocksForIfOperator("then")
+                    makeBlocksForIfOperator("then", R.drawable.math_expression_block, R.dimen.little_block_text_size)
                     str += "[ "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.elseOperator -> {
-                    makeBlocksForIfOperator("else")
+                    makeBlocksForIfOperator("else", R.drawable.math_expression_block, R.dimen.little_block_text_size)
                     str+="] [ "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.endIf ->{
                     str += "] endIf "
-                    makeBlocksForIfOperator("endIf")
+                    makeBlocksForIfOperator("endIf", R.drawable.math_expression_block, R.dimen.little_block_text_size)
                     lastBlock.add(Pair(lastBlock.size + 1, str))
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
