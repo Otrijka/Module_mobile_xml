@@ -50,6 +50,7 @@ fun parseStr(string: String) {
             "/",
             "=",
             "^",
+            "%",
             "print",
             ">",
             "=>",
@@ -155,6 +156,13 @@ fun parseStr(string: String) {
                     val leftVar = popAtStack(varStack)
                     varStack.push(
                         (Math.pow(leftVar.toDouble(), rightVar.toDouble()).toLong()).toString()
+                    )
+                }
+                "%" -> {
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
+                    varStack.push(
+                        (leftVar.toLong() % rightVar.toLong()).toString()
                     )
                 }
                 ">" -> {

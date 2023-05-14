@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        fun makeCustomBlock(operatorName: String, backgroundID : Int, textSize : Int) {
+        fun makeCustomBlock(operatorName: String, backgroundID: Int, textSize: Int) {
 
             val parentLayout = findViewById<LinearLayout>(R.id.codePlace)
             val block = TextView(this)
@@ -60,18 +60,22 @@ class MainActivity : AppCompatActivity() {
                     openFragment(IfOperatorFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.whileOperator ->{
+                R.id.whileOperator -> {
                     openFragment(WhileFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.endWhile ->{
-                    makeCustomBlock("endWhile", R.drawable.while_block, R.dimen.little_block_text_size)
+                R.id.endWhile -> {
+                    makeCustomBlock(
+                        "endWhile",
+                        R.drawable.while_block,
+                        R.dimen.little_block_text_size
+                    )
                     str += "] endWhile "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
 
                     val scrollView = binding.scrollView
                     scrollView.post {
-                        scrollView.scrollTo(0,scrollView.bottom)
+                        scrollView.scrollTo(0, scrollView.bottom)
                     }
 
                     binding.drawer.closeDrawer(GravityCompat.END)
@@ -83,31 +87,31 @@ class MainActivity : AppCompatActivity() {
 
                     val scrollView = binding.scrollView
                     scrollView.post {
-                        scrollView.scrollTo(0,scrollView.bottom)
+                        scrollView.scrollTo(0, scrollView.bottom)
                     }
 
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.elseOperator -> {
                     makeCustomBlock("else", R.drawable.else_block, R.dimen.little_block_text_size)
-                    str+="] [ "
+                    str += "] [ "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
 
                     val scrollView = binding.scrollView
                     scrollView.post {
-                        scrollView.scrollTo(0,scrollView.bottom)
+                        scrollView.scrollTo(0, scrollView.bottom)
                     }
 
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.endIf ->{
+                R.id.endIf -> {
                     str += "] endIf "
                     makeCustomBlock("endIf", R.drawable.endif_block, R.dimen.little_block_text_size)
                     lastBlock.add(Pair(lastBlock.size + 1, str))
 
                     val scrollView = binding.scrollView
                     scrollView.post {
-                        scrollView.scrollTo(0,scrollView.bottom)
+                        scrollView.scrollTo(0, scrollView.bottom)
                     }
 
                     binding.drawer.closeDrawer(GravityCompat.END)
@@ -124,7 +128,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.compile_button -> {
                     variablesMap.clear()
-                    compile()
+                    try {
+                        compile()
+                    } catch (e: java.lang.Exception) {
+
+                    }
                     val intent = Intent(this@MainActivity, CompilerActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(

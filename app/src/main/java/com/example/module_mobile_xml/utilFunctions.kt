@@ -4,7 +4,7 @@ import java.util.*
 
 fun normilizeString(text: String): String {
     var newText = text.filter { !it.isWhitespace() }
-    newText = newText.replace("([+\\-*/^])".toRegex(), " $1 ")
+    newText = newText.replace("([+\\-*/^%])".toRegex(), " $1 ")
     newText = newText.replace("([(])".toRegex(), "$1 ")
     newText = newText.replace("([)])".toRegex(), " $1")
     return newText
@@ -41,6 +41,7 @@ fun toReversePolishNotation(expression: String): String {
     val operators = mapOf(
         "+" to 1,
         "-" to 1,
+        "%" to 1,
         "*" to 2,
         "/" to 2,
         "^" to 3
