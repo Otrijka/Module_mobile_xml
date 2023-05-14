@@ -1,6 +1,7 @@
 package com.example.module_mobile_xml
 
 import android.util.Log
+import checkOnArray
 import replaceFigureOnDots
 import replaceWhiteSpaceOnDots
 import java.util.Stack
@@ -131,7 +132,13 @@ fun parseStr(string: String) {
                 "=" -> {
                     val rightVar = popAtStack(varStack)
                     val leftVar = varStack.pop()
-                    variablesMap.put(leftVar, rightVar.toLong())
+
+                    if (checkOnArray(leftVar)){
+                        val index = popAtStack(varStack)
+                        variablesMap.put(leftVar+index, rightVar.toLong())
+                    }else{
+                        variablesMap.put(leftVar, rightVar.toLong())
+                    }
                 }
                 "+" -> {
                     val rightVar = popAtStack(varStack)

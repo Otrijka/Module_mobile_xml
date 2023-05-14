@@ -43,6 +43,15 @@ fun checkNameInArrayNames(){
         }
     }
 }
+
+fun checkOnArray(str : String) : Boolean{
+    for (arr in arrayNames){
+        if (str in arr){
+            return true
+        }
+    }
+    return false
+}
 fun toReversePolishNotation(expression: String): String {
     val outputQueue = mutableListOf<String>()
     val operatorStack = Stack<String>()
