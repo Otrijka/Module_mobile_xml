@@ -65,8 +65,11 @@ class MathematicArrayFragment : Fragment() {
                 val index = binding.indexInput.text.toString()
 
                 if (inputExp.length != 0) {
+
+                    var newInputExp = inputExp.replace("[", "").replace("]", "").trim()
+                    newInputExp = normilizeString(newInputExp)
                     inputExp = normilizeString(inputExp)
-                    val temp = "$index $arrName ${toReversePolishNotation(inputExp)} = "
+                    val temp = "$index $arrName ${toReversePolishNotation(newInputExp)} = "
                     str += temp
                     makeBlockMathExp(arrName, index, inputExp)
                     lastBlock.add(Pair(lastBlock.size + 1, str))

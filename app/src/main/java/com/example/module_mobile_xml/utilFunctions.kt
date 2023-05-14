@@ -1,6 +1,7 @@
 import com.example.module_mobile_xml.arrayNames
 import com.example.module_mobile_xml.str
 import com.example.module_mobile_xml.varNames
+import com.example.module_mobile_xml.variablesMap
 import java.util.*
 
 fun normilizeString(text: String): String {
@@ -52,6 +53,15 @@ fun checkOnArray(str : String) : Boolean{
     }
     return false
 }
+
+fun checkOnArrayReverse(str : String) : Boolean{
+    for (arr in arrayNames){
+        if (arr in str){
+            return true
+        }
+    }
+    return false
+}
 fun toReversePolishNotation(expression: String): String {
     val outputQueue = mutableListOf<String>()
     val operatorStack = Stack<String>()
@@ -68,7 +78,7 @@ fun toReversePolishNotation(expression: String): String {
     for (token in expression.split(" ")) {
         when {
             token.matches(Regex("\\d+")) -> outputQueue.add(token) // Если токен - число, добавляем его в очередь вывода
-            token in varNames -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
+            token in varNames || checkOnArrayReverse(token) -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
             operators.containsKey(token) -> { // Если токен - оператор
                 while (!operatorStack.isEmpty() && operators[operatorStack.peek()] ?: 0 >= operators[token] ?: 0) {
                     outputQueue.add(operatorStack.pop()) // Извлекаем операторы из стека и добавляем их в очередь вывода
@@ -91,4 +101,16 @@ fun toReversePolishNotation(expression: String): String {
     }
 
     return outputQueue.joinToString(" ")
+}
+
+fun checkInMapKeys(str: String) : String{
+    var temp = ""
+    for (word in str.split(" ")){
+        if (word in variablesMap.keys){
+            temp += variablesMap[word].toString() + " "
+        }else{
+            temp += word
+        }
+    }
+    return temp
 }

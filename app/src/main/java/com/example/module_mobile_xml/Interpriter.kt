@@ -133,7 +133,7 @@ fun parseStr(string: String) {
                     val rightVar = popAtStack(varStack)
                     val leftVar = varStack.pop()
 
-                    if (checkOnArray(leftVar)){
+                    if (checkOnArray(leftVar) && leftVar !in varNames){
                         val index = popAtStack(varStack)
                         variablesMap.put(leftVar+index, rightVar.toLong())
                     }else{
