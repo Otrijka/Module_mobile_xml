@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import checkInMapKeys
 import com.example.module_mobile_xml.databinding.MathematicFragmentBinding
 import normilizeString
 import toReversePolishNotation
@@ -63,7 +64,8 @@ class MathematicFragment : Fragment() {
                 val varName = binding.varMenu.selectedItem.toString()
                 var inputExp = binding.mathExpInput.text.toString()
                 if (inputExp.length != 0) {
-                    var newInputExp = inputExp.replace("[","").replace("]","").trim()
+                    var newInputExp = inputExp.replace("["," ").replace("]"," ")
+                    newInputExp = checkInMapKeys(newInputExp)
                     newInputExp = normilizeString(newInputExp)
                     inputExp = normilizeString(inputExp)
                     val temp = varName + " " + toReversePolishNotation(newInputExp) + " = "

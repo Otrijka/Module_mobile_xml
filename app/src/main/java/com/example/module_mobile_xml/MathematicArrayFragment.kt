@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import checkInMapKeys
 import com.example.module_mobile_xml.databinding.MathematicArrayFragmentBinding
 import normilizeString
 import toReversePolishNotation
@@ -66,7 +67,8 @@ class MathematicArrayFragment : Fragment() {
 
                 if (inputExp.length != 0) {
 
-                    var newInputExp = inputExp.replace("[", "").replace("]", "").trim()
+                    var newInputExp = inputExp.replace("[", " ").replace("]", " ")
+                    newInputExp = checkInMapKeys(newInputExp)
                     newInputExp = normilizeString(newInputExp)
                     inputExp = normilizeString(inputExp)
                     val temp = "$index $arrName ${toReversePolishNotation(newInputExp)} = "
