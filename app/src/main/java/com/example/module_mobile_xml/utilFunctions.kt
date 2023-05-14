@@ -1,5 +1,3 @@
-import android.app.Activity
-import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.str
 import com.example.module_mobile_xml.varNames
 import java.util.*
@@ -21,6 +19,14 @@ fun replaceWhiteSpaceOnDots(input: String) : String{
     return result
 }
 
+
+fun replaceFigureOnDots(input: String) : String{
+    val regex = Regex("\\{\\s*(.*?)\\s*\\}")
+    val output = regex.replace(input) { matchResult ->
+        matchResult.value.replace(" ", ",")
+    }
+    return  output
+}
 fun checkNameInVarNames(){
     for (i in varNames){
         if (i !in str){
@@ -28,7 +34,6 @@ fun checkNameInVarNames(){
         }
     }
 }
-
 fun toReversePolishNotation(expression: String): String {
     val outputQueue = mutableListOf<String>()
     val operatorStack = Stack<String>()

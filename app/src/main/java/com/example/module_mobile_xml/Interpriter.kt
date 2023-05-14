@@ -1,6 +1,7 @@
 package com.example.module_mobile_xml
 
 import android.util.Log
+import replaceFigureOnDots
 import replaceWhiteSpaceOnDots
 import java.util.Stack
 
@@ -35,16 +36,86 @@ fun parseStr(string: String) {
     }
 
     str = str.trim()
+    str = replaceFigureOnDots(str)
     str = replaceWhiteSpaceOnDots(str)
 
     Log.d("app", "nextStr: " + str)
-    var varStack = Stack<String>()
+    val varStack = Stack<String>()
 
     val actionList =
-        arrayListOf("+", "-", "*", "/", "=", "^", "print", ">", "=>", "<", "<=", "==", "endIf", "endWhile")
+        arrayListOf(
+            "+",
+            "-",
+            "*",
+            "/",
+            "=",
+            "^",
+            "print",
+            ">",
+            "=>",
+            "<",
+            "<=",
+            "==",
+            "endIf",
+            "endWhile"
+        )
 
-    fun popAtStack(): String {
+    fun popAtStack(varStack : Stack<String>): String {
         return if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
+    }
+
+    fun parseLogicExperssion(string: String): String {
+        val conditionList =
+            arrayListOf(
+                ">",
+                "=>",
+                "<",
+                "<=",
+                "==",
+            )
+        var str = string.replace(",", " ").trim().drop(1).dropLast(1)
+
+        str = str.trim()
+        str = replaceWhiteSpaceOnDots(str)
+
+        Log.d("app", "logicExp: " + str)
+        var varStack = Stack<String>()
+
+        for (i in str.split(" ")) {
+            if (i !in conditionList && i != "" && i != "[" && i != "]" && i != " ") {
+                varStack.add(i)
+            } else {
+                when (i) {
+                    ">" -> {
+                        val rightVar = popAtStack(varStack)
+                        val leftVar = popAtStack(varStack)
+                        return (leftVar.toLong() > rightVar.toLong()).toString()
+                    }
+                    ">=" -> {
+                        val rightVar = popAtStack(varStack)
+                        val leftVar = popAtStack(varStack)
+                        return (leftVar.toLong() >= rightVar.toLong()).toString()
+                    }
+                    "<" -> {
+                        val rightVar = popAtStack(varStack)
+                        val leftVar = popAtStack(varStack)
+                        return (leftVar.toLong() < rightVar.toLong()).toString()
+                    }
+                    "<=" -> {
+                        val rightVar = popAtStack(varStack)
+                        val leftVar = popAtStack(varStack)
+                        return (leftVar.toLong() <= rightVar.toLong()).toString()
+                    }
+                    "==" -> {
+                        val rightVar = popAtStack(varStack)
+                        val leftVar = popAtStack(varStack)
+                        return (leftVar.toLong() == rightVar.toLong()).toString()
+                    }
+                }
+            }
+        }
+
+        return "error"
     }
 
     for (i in str.split(" ")) {
@@ -55,60 +126,60 @@ fun parseStr(string: String) {
 
             when (i) {
                 "=" -> {
-                    val rightVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
                     val leftVar = varStack.pop()
                     variablesMap.put(leftVar, rightVar.toLong())
                 }
                 "+" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() + rightVar.toLong()).toString())
                 }
                 "-" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() - rightVar.toLong()).toString())
                 }
                 "*" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() * rightVar.toLong()).toString())
                 }
                 "/" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() / rightVar.toLong()).toString())
                 }
                 "^" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push(
                         (Math.pow(leftVar.toDouble(), rightVar.toDouble()).toLong()).toString()
                     )
                 }
                 ">" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() > rightVar.toLong()).toString())
                 }
                 ">=" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() >= rightVar.toLong()).toString())
                 }
                 "<" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() < rightVar.toLong()).toString())
                 }
                 "<=" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() <= rightVar.toLong()).toString())
                 }
                 "==" -> {
-                    val rightVar = popAtStack()
-                    val leftVar = popAtStack()
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() == rightVar.toLong()).toString())
                 }
                 "print" -> {
@@ -128,13 +199,13 @@ fun parseStr(string: String) {
                         parseStr(ELSE)
                     }
                 }
-                "endWhile" ->{
+                "endWhile" -> {
                     val DO = varStack.pop()
-                    val FLAG = varStack.pop().toBoolean()
-                    if (FLAG == true){
+                    val logicExpression = varStack.pop()
+                    val flag = parseLogicExperssion(logicExpression).toBoolean()
+                    if (flag == true) {
                         parseStr(DO)
-                        // TODO: Придумать как сохранять логическое выражение 
-                        parseStr("a 10000 < " + DO + " endWhile ")
+                        parseStr( "$logicExpression $DO endWhile")
                     }
                 }
             }

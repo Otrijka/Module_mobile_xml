@@ -22,7 +22,7 @@ class WhileFragment : Fragment() {
     ): View? {
         binding = WhileFragmentBinding.inflate(inflater)
 
-        val conditions = arrayListOf("==", "!=", ">", "<", ">=", "<=")
+        val conditions = arrayListOf("<", ">", ">=", "<=", "==")
         val conditionAdapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, conditions)
         val varAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, varNames)
@@ -75,7 +75,7 @@ class WhileFragment : Fragment() {
             val var2 = binding.var2Input.text.toString().trim()
             val condition = binding.conditionSpinner.selectedItem.toString()
             if ((var1 in varNames && var2 in varNames) || (var1.isDigitsOnly() && var2 in varNames) || (var1 in varNames && var2.isDigitsOnly()) || (var1.isDigitsOnly() && var2.isDigitsOnly()) && (!var1.equals("") && !var2.equals(""))) {
-                val temp = "$var1 $var2 $condition ["
+                val temp = "{$var1 $var2 $condition} [ "
                 makeBlockVar(var1, condition, var2)
                 str+=temp
                 lastBlock.add(Pair(lastBlock.size + 1,str))
