@@ -9,4 +9,7 @@
     <dimen name="little_block_text_size">7sp</dimen>
 
 
+    <dimen name="outline_border_width">2dp</dimen>
+    <dimen name="inline_border_width">2dp</dimen>
+
 </resources>

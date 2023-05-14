@@ -48,8 +48,16 @@ class MainActivity : AppCompatActivity() {
                     openFragment(CreateVariableFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
+                R.id.arrayInteger -> {
+                    openFragment(ArrayFragment.newInstance(), R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
                 R.id.printVar -> {
                     openFragment(PrintVariableFragment.newInstance(), R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.printArray ->{
+                    openFragment(PrintArrayFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.mathExpression -> {

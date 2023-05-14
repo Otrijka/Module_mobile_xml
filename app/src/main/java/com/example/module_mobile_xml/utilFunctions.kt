@@ -1,3 +1,4 @@
+import com.example.module_mobile_xml.arrayNames
 import com.example.module_mobile_xml.str
 import com.example.module_mobile_xml.varNames
 import java.util.*
@@ -31,6 +32,14 @@ fun checkNameInVarNames(){
     for (i in varNames){
         if (i !in str){
             varNames.remove(i)
+        }
+    }
+}
+
+fun checkNameInArrayNames(){
+    for (i in arrayNames){
+        if (i !in str){
+            arrayNames.remove(i)
         }
     }
 }

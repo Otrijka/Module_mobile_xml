@@ -6,6 +6,7 @@ import replaceWhiteSpaceOnDots
 import java.util.Stack
 
 var varNames = arrayListOf<String>()
+var arrayNames = arrayListOf<String>()
 var variablesMap = mutableMapOf<String, Long>()
 var str = ""
 var lastBlock = arrayListOf<Pair<Int, String>>()
@@ -52,6 +53,7 @@ fun parseStr(string: String) {
             "^",
             "%",
             "print",
+            "printArray",
             ">",
             "=>",
             "<",
@@ -194,6 +196,18 @@ fun parseStr(string: String) {
                     val rightVar = varStack.pop()
                     outPutList.add(variablesMap[rightVar].toString())
                     Log.d("app", "$rightVar = " + variablesMap[rightVar].toString())
+                }
+                "printArray" ->{
+                    val arrName = varStack.pop()
+                    var outputString = "["
+
+                    for (i in variablesMap.keys){
+                        if (arrName in i){
+                            outputString += variablesMap[i].toString() + " "
+                        }
+                    }
+                    outputString = outputString.trim() + "]"
+                    outPutList.add(outputString)
                 }
                 "endIf" -> {
                     var ELSE = varStack.pop()

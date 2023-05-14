@@ -5,6 +5,11 @@
     <string name="make_block_button_text">Создать</string>
     <string name="hint_math_exp_block">Math expression</string>
     <string name="new_var_name_block_hint">Название переменной</string>
+
+    <string name="new_array_name_block_hint">Название массива</string>
+    <string name="new_array_capacity_block_hint">Размер массива</string>
+
+
     <string name="new_var_data_block_hint">Значение</string>
     <string name="start_button_text">Start</string>
 
