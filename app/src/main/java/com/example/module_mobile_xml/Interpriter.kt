@@ -1,7 +1,6 @@
 package com.example.module_mobile_xml
 
 import android.util.Log
-import checkOnArray
 import replaceFigureOnDots
 import replaceWhiteSpaceOnDots
 import java.util.Stack
@@ -64,7 +63,7 @@ fun parseStr(string: String) {
             "endWhile"
         )
 
-    fun popAtStack(varStack: Stack<String>): String {
+    fun popAtStack(varStack : Stack<String>): String {
         return if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
     }
 
@@ -131,10 +130,8 @@ fun parseStr(string: String) {
             when (i) {
                 "=" -> {
                     val rightVar = popAtStack(varStack)
-                    var leftVar = varStack.pop()
-
+                    val leftVar = varStack.pop()
                     variablesMap.put(leftVar, rightVar.toLong())
-
                 }
                 "+" -> {
                     val rightVar = popAtStack(varStack)
@@ -200,12 +197,12 @@ fun parseStr(string: String) {
                     outPutList.add(variablesMap[rightVar].toString())
                     Log.d("app", "$rightVar = " + variablesMap[rightVar].toString())
                 }
-                "printArray" -> {
+                "printArray" ->{
                     val arrName = varStack.pop()
                     var outputString = "["
 
-                    for (i in variablesMap.keys) {
-                        if (arrName in i) {
+                    for (i in variablesMap.keys){
+                        if (arrName in i){
                             outputString += variablesMap[i].toString() + " "
                         }
                     }
@@ -230,7 +227,7 @@ fun parseStr(string: String) {
                     val flag = parseLogicExperssion(logicExpression).toBoolean()
                     if (flag == true) {
                         parseStr(DO)
-                        parseStr("$logicExpression $DO endWhile")
+                        parseStr( "$logicExpression $DO endWhile")
                     }
                 }
             }
