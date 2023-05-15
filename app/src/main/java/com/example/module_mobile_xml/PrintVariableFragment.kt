@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import checkNameInVarNames
+import checkVarNames
 import com.example.module_mobile_xml.databinding.PrintVariableFragmentBinding
 
 class PrintVariableFragment : Fragment() {
@@ -50,7 +51,6 @@ class PrintVariableFragment : Fragment() {
         }
 
         val varListForPrint = binding.varList
-        checkNameInVarNames()
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, varNames)
         varListForPrint.adapter = adapter
 

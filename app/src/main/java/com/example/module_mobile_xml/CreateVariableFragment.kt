@@ -68,10 +68,10 @@ class CreateVariableFragment : Fragment() {
                 makeBlockVar(varName, varData)
                 val temp = "$varName $varData = "
                 str+=temp
+
                 if (varName !in varNames){
                     varNames.add(varName)
                 }
-                //variablesMap.put(varName,varData.toLong())
 
                 lastBlock.add(Pair(lastBlock.size + 1, str))
             }

@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import checkVarNames
 import com.example.module_mobile_xml.databinding.MathematicFragmentBinding
 import normilizeString
 import toReversePolishNotation

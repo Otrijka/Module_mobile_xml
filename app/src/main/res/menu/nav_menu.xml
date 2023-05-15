@@ -8,20 +8,32 @@
         <menu>
             <item
                 android:id="@+id/varInteger"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="variable" />
+                android:title="VAR: variable" />
+
+            <item
+                android:id="@+id/mathExpressionVariable"
+                android:title="VAR: math expression" />
+            <item
+                android:id="@+id/printVar"
+                android:title="VAR: print"/>
         </menu>
 
     </item>
 
-    <item android:title="Math expression">
+    <item
+        android:title="Array">
         <menu>
             <item
-                android:id="@+id/mathExpression"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="math expression" />
-
+                android:id="@+id/arrayInteger"
+                android:title="[ ] array" />
+            <item
+                android:id="@+id/mathExpressionArray"
+                android:title="[ ] math expression" />
+            <item
+                android:id="@+id/printArr"
+                android:title="[ ] print"/>
         </menu>
+
 
     </item>
 
@@ -53,16 +65,6 @@
             <item android:id="@+id/endWhile"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="endWhile"/>
-        </menu>
-
-    </item>
-
-    <item android:title="Output">
-
-        <menu>
-            <item android:id="@+id/printVar"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="print"/>
         </menu>
 
     </item>

@@ -19,7 +19,13 @@ fun replaceWhiteSpaceOnDots(input: String) : String{
     return result
 }
 
-
+fun checkVarNames(){
+    for (name in varNames){
+        if (name  !in str.split(" ")){
+            varNames.remove(name)
+        }
+    }
+}
 fun replaceFigureOnDots(input: String) : String{
     val regex = Regex("\\{\\s*(.*?)\\s*\\}")
     val output = regex.replace(input) { matchResult ->
