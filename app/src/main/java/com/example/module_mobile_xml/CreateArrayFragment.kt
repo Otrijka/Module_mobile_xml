@@ -66,6 +66,7 @@ class CreateArrayFragment : Fragment() {
                 makeBlockVar(arrName, arrSize)
                 var temp = ""
                 for (i in 0 until arrSize.toInt()){
+                    arrNamesWithIndexies.add("${arrName}_${i}")
                     temp += "${arrName}_${i} 0 = "
                 }
                 str+=temp

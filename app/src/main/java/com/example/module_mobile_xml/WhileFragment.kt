@@ -53,7 +53,7 @@ class WhileFragment : Fragment() {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
-                params.setMargins(0, 0, 0, 25)
+                params.setMargins(0, 0, 0, 50)
 
                 layoutParams = params
                 setBackgroundResource(R.drawable.while_block)

@@ -19,7 +19,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        fun makeCustomBlock(operatorName: String, backgroundID: Int, textSize: Int) {
+        fun makeCustomBlock(
+            operatorName: String,
+            backgroundID: Int,
+            textSize: Int,
+            marginBottom: Int,
+            marginTop: Int
+        ) {
 
             val parentLayout = findViewById<LinearLayout>(R.id.codePlace)
             val block = TextView(this)
@@ -32,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
-                params.setMargins(0, 0, 0, 25)
+                params.setMargins(0, marginTop, 0, marginBottom)
 
                 layoutParams = params
                 setBackgroundResource(backgroundID)
@@ -49,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     openFragment(CreateVariableFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.arrayInteger ->{
+                R.id.arrayInteger -> {
                     openFragment(CreateArrayFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
@@ -57,6 +63,11 @@ class MainActivity : AppCompatActivity() {
                     openFragment(PrintVariableFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
+                R.id.printArr ->{
+                    openFragment(PrintArrayFragment.newInstance(), R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+
                 R.id.mathExpressionVariable -> {
                     openFragment(MathematicFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
@@ -73,7 +84,9 @@ class MainActivity : AppCompatActivity() {
                     makeCustomBlock(
                         "endWhile",
                         R.drawable.while_block,
-                        R.dimen.little_block_text_size
+                        R.dimen.little_block_text_size,
+                        25,
+                        25
                     )
                     str += "] endWhile "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
@@ -86,7 +99,13 @@ class MainActivity : AppCompatActivity() {
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.thenOperator -> {
-                    makeCustomBlock("then", R.drawable.then_block, R.dimen.little_block_text_size)
+                    makeCustomBlock(
+                        "then",
+                        R.drawable.then_block,
+                        R.dimen.little_block_text_size,
+                        25,
+                        0
+                    )
                     str += "[ "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
 
@@ -98,7 +117,13 @@ class MainActivity : AppCompatActivity() {
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.elseOperator -> {
-                    makeCustomBlock("else", R.drawable.else_block, R.dimen.little_block_text_size)
+                    makeCustomBlock(
+                        "else",
+                        R.drawable.else_block,
+                        R.dimen.little_block_text_size,
+                        25,
+                        0
+                    )
                     str += "] [ "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
 
@@ -111,7 +136,13 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.endIf -> {
                     str += "] endIf "
-                    makeCustomBlock("endIf", R.drawable.endif_block, R.dimen.little_block_text_size)
+                    makeCustomBlock(
+                        "endIf",
+                        R.drawable.endif_block,
+                        R.dimen.little_block_text_size,
+                        25,
+                        25,
+                    )
                     lastBlock.add(Pair(lastBlock.size + 1, str))
 
                     val scrollView = binding.scrollView
@@ -128,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         //Листенеры на элементы bottomNav
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.blocks_button -> {
+                R.id.blocks_menu_button -> {
                     binding.drawer.openDrawer(GravityCompat.END)
                 }
                 R.id.compile_button -> {
@@ -136,7 +167,7 @@ class MainActivity : AppCompatActivity() {
                     try {
                         compile()
                     } catch (e: java.lang.Exception) {
-                        
+
                     }
                     val intent = Intent(this@MainActivity, CompilerActivity::class.java)
                     startActivity(intent)

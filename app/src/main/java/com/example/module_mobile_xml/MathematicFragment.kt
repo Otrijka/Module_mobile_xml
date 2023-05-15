@@ -61,11 +61,11 @@ class MathematicFragment : Fragment() {
                 val varName = binding.varMenu.selectedItem.toString()
                 var inputExp = binding.mathExpInput.text.toString()
                 if (inputExp.length != 0) {
-
+                    val tempInputExp = inputExp
                     inputExp = normilizeString(inputExp)
                     val temp = varName + " " + toReversePolishNotation(inputExp) + " = "
                     str += temp
-                    makeBlockMathExp(varName, inputExp)
+                    makeBlockMathExp(varName, tempInputExp)
                     lastBlock.add(Pair(lastBlock.size + 1,str))
                     activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)
                         ?.commit()

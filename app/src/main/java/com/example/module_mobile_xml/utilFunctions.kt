@@ -1,6 +1,5 @@
-import com.example.module_mobile_xml.arrNames
-import com.example.module_mobile_xml.str
-import com.example.module_mobile_xml.varNames
+import android.util.Log
+import com.example.module_mobile_xml.*
 import java.util.*
 
 fun normilizeString(text: String): String {
@@ -8,7 +7,29 @@ fun normilizeString(text: String): String {
     newText = newText.replace("([+\\-*/^%])".toRegex(), " $1 ")
     newText = newText.replace("([(])".toRegex(), "$1 ")
     newText = newText.replace("([)])".toRegex(), " $1")
+
+    newText = reverseVarToIndex(newText)
     return newText
+}
+
+fun reverseVarToIndex(str : String) : String{
+    var mainTemp = ""
+
+    for (word in str.split(" ")){
+        if ("_" in word){
+            val name = word.split("_").first()
+            var index = word.split("_").last()
+
+            if (index in varNames){
+                index = variablesMap[index].toString()
+            }
+
+            mainTemp += "${name}_$index "
+        }else{
+            mainTemp += "$word "
+        }
+    }
+    return mainTemp.trim()
 }
 
 fun replaceWhiteSpaceOnDots(input: String) : String{
@@ -27,11 +48,20 @@ fun checkNames(){
         }
     }
     for (arr in arrNames){
-        val name = "${arr}"
-        if (name !in str.split(Regex("""_\d+"""))){
+        if (!str.contains("${arr}_")){
             arrNames.remove(arr)
+            val forDelete = arrayListOf<String>()
+            for (el in arrNamesWithIndexies){
+                if ("${arr}_" in el){
+                    forDelete.add(el)
+                }
+            }
+            for (el in forDelete){
+                arrNamesWithIndexies.remove(el)
+            }
         }
     }
+
 }
 fun replaceFigureOnDots(input: String) : String{
     val regex = Regex("\\{\\s*(.*?)\\s*\\}")
@@ -63,7 +93,7 @@ fun toReversePolishNotation(expression: String): String {
     for (token in expression.split(" ")) {
         when {
             token.matches(Regex("\\d+")) -> outputQueue.add(token) // Если токен - число, добавляем его в очередь вывода
-            token in varNames -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
+            token in varNames || token in arrNamesWithIndexies -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
             operators.containsKey(token) -> { // Если токен - оператор
                 while (!operatorStack.isEmpty() && operators[operatorStack.peek()] ?: 0 >= operators[token] ?: 0) {
                     outputQueue.add(operatorStack.pop()) // Извлекаем операторы из стека и добавляем их в очередь вывода

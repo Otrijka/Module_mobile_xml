@@ -7,6 +7,7 @@ import java.util.Stack
 
 var varNames = arrayListOf<String>()
 var arrNames = arrayListOf<String>()
+var arrNamesWithIndexies = arrayListOf<String>()
 var variablesMap = mutableMapOf<String, Long>()
 var str = ""
 var lastBlock = arrayListOf<Pair<Int, String>>()
@@ -16,8 +17,15 @@ fun compile() {
 
     Log.d("app", "-----------------\nCompile starting")
     outPutList.clear()
-    parseStr(str)
 
+    if (str != ""){
+        parseStr(str)
+    }
+
+    Log.d("app", "varMap: " + variablesMap)
+    Log.d("app", "arrNames: " + arrNames)
+    Log.d("app", "arrNamesWIndex: " + arrNamesWithIndexies)
+    Log.d("app", "varNames: " + varNames)
     Log.d("app", "varMap: " + variablesMap)
     Log.d("app", "Compile end\n-----------------")
 
@@ -53,6 +61,7 @@ fun parseStr(string: String) {
             "^",
             "%",
             "print",
+            "printArray",
             ">",
             "=>",
             "<",
@@ -129,7 +138,8 @@ fun parseStr(string: String) {
             when (i) {
                 "=" -> {
                     val rightVar = popAtStack(varStack)
-                    val leftVar = varStack.pop()
+                    var leftVar = varStack.pop()
+
                     variablesMap.put(leftVar, rightVar.toLong())
                 }
                 "+" -> {
@@ -195,6 +205,17 @@ fun parseStr(string: String) {
                     val rightVar = varStack.pop()
                     outPutList.add(variablesMap[rightVar].toString())
                     Log.d("app", "$rightVar = " + variablesMap[rightVar].toString())
+                }
+                "printArray" ->{
+                    val rightVar = varStack.pop()
+                    var tempStr = "["
+                    for (name in variablesMap.keys){
+                        if ("${rightVar}_" in name){
+                            tempStr += variablesMap[name].toString() + " "
+                        }
+                    }
+                    tempStr = tempStr.trimEnd() + "]"
+                    outPutList.add(tempStr)
                 }
                 "endIf" -> {
                     var ELSE = varStack.pop()
