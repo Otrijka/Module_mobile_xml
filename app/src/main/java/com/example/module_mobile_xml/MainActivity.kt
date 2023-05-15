@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import checkVarNames
+import checkNames
 import com.example.module_mobile_xml.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -47,6 +47,10 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.varInteger -> {
                     openFragment(CreateVariableFragment.newInstance(), R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.arrayInteger ->{
+                    openFragment(CreateArrayFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.printVar -> {
@@ -149,8 +153,8 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             str = ""
                         }
+                        checkNames()
                         lastBlock.removeLast()
-                        checkVarNames()
                     }
                 }
             }

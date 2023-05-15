@@ -1,7 +1,6 @@
 package com.example.module_mobile_xml
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,9 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import checkVarNames
 import com.example.module_mobile_xml.databinding.MathematicFragmentBinding
 import normilizeString
 import toReversePolishNotation
-import java.util.Stack
 
 class MathematicFragment : Fragment() {
 

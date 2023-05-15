@@ -1,3 +1,4 @@
+import com.example.module_mobile_xml.arrNames
 import com.example.module_mobile_xml.str
 import com.example.module_mobile_xml.varNames
 import java.util.*
@@ -19,10 +20,16 @@ fun replaceWhiteSpaceOnDots(input: String) : String{
     return result
 }
 
-fun checkVarNames(){
+fun checkNames(){
     for (name in varNames){
         if (name  !in str.split(" ")){
             varNames.remove(name)
+        }
+    }
+    for (arr in arrNames){
+        val name = "${arr}"
+        if (name !in str.split(Regex("""_\d+"""))){
+            arrNames.remove(arr)
         }
     }
 }

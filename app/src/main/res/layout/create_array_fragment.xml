@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/variable_block"
+        android:background="@drawable/array_block"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -20,38 +20,44 @@
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nameHolder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/rounded_border"
-                android:hint="@string/new_var_name_block_hint"
-                android:inputType="textVisiblePassword|textPersonName"
-
-                android:maxLength="20"
-                android:maxLines="1"
-                android:textColorHint="@color/blue" />
-
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp">
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dataHolder"
-                    android:layout_width="match_parent"
+                    android:id="@+id/nameHolder"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:background="@drawable/rounded_border"
-                    android:hint="@string/new_var_data_block_hint"
-                    android:inputType="number"
-                    android:maxLength="10"
+                    android:hint="@string/new_arr_name_block_hint"
+
+                    android:inputType="textVisiblePassword|textPersonName"
+                    android:maxLength="20"
                     android:maxLines="1"
                     android:textColorHint="@color/blue" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dataHolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/rounded_border"
+                        android:hint="@string/new_arr_capacity_block_hint"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:textColorHint="@color/blue" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
         </com.google.android.material.textfield.TextInputLayout>
 

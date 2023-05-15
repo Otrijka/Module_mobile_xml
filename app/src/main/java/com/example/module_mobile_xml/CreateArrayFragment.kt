@@ -1,42 +1,40 @@
 package com.example.module_mobile_xml
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.module_mobile_xml.databinding.CreateVariableFragmentBinding
-class CreateVariableFragment : Fragment() {
+import com.example.module_mobile_xml.databinding.CreateArrayFragmentBinding
 
-    lateinit var binding: CreateVariableFragmentBinding
+class CreateArrayFragment : Fragment() {
+
+    lateinit var binding: CreateArrayFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = CreateVariableFragmentBinding.inflate(inflater)
+        binding = CreateArrayFragmentBinding.inflate(inflater)
         return binding.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = CreateVariableFragment()
+        fun newInstance() = CreateArrayFragment()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fun makeBlockVar(varName: String?, varData: String?) {
+        fun makeBlockVar(arrName: String?, arrSize: String?) {
             val layout = activity?.findViewById<LinearLayout>(R.id.codePlace)
             val block = TextView(context)
 
             with(block) {
-                text = "VAR: $varName = $varData"
+                text = "[]: = $arrName($arrSize)"
 
                 val params: LinearLayout.LayoutParams =
                     LinearLayout.LayoutParams(
@@ -61,14 +59,17 @@ class CreateVariableFragment : Fragment() {
 
         binding.createBlockButton.setOnClickListener {
 
-            val varName = binding.nameHolder.text.toString()
-            val varData = binding.dataHolder.text.toString()
+            val arrName = binding.nameHolder.text.toString()
+            val arrSize = binding.dataHolder.text.toString()
 
-            if (varName.length != 0 && varData.length != 0 && !varName.first().isDigit() && varName !in varNames && varName !in arrNames) {
-                makeBlockVar(varName, varData)
-                val temp = "$varName $varData = "
+            if (arrName.length != 0 && arrSize.length != 0 && !arrName.first().isDigit() && arrName !in arrNames && arrName !in varNames) {
+                makeBlockVar(arrName, arrSize)
+                var temp = ""
+                for (i in 0 until arrSize.toInt()){
+                    temp += "${arrName}_${i} 0 = "
+                }
                 str+=temp
-                varNames.add(varName)
+                arrNames.add(arrName)
                 lastBlock.add(Pair(lastBlock.size + 1, str))
             }
 

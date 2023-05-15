@@ -6,6 +6,7 @@ import replaceWhiteSpaceOnDots
 import java.util.Stack
 
 var varNames = arrayListOf<String>()
+var arrNames = arrayListOf<String>()
 var variablesMap = mutableMapOf<String, Long>()
 var str = ""
 var lastBlock = arrayListOf<Pair<Int, String>>()

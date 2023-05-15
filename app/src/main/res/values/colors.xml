@@ -20,12 +20,15 @@
 
     <color name="variable_block">#4DFF00</color>
     <color name="math_expression_block">#29BBC8</color>
-    <color name="print_variable_block">#C67108</color>
+    <color name="print_variable_block">#B86907</color>
 
+    <color name="arr_block">#4DFF00</color>
+    <color name="math_expression_arr_block">#29BBC8</color>
+    <color name="print_arr_block">#B86907</color>
 
     <color name="if_block">#EAFF30</color>
-    <color name="else_block">#F4B006</color>
     <color name="then_block">#F4B006</color>
+    <color name="else_block">#F4B006</color>
     <color name="endif_block">#EAFF30</color>
 
 
