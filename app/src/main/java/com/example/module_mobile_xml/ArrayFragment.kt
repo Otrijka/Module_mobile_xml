@@ -65,7 +65,7 @@ class ArrayFragment : Fragment() {
             if (arrayName.length != 0 && capacity.length != 0 && !arrayName.first().isDigit() && arrayName !in str) {
                 makeBlockVar(arrayName, capacity)
                 for (i in 0 until capacity.toInt()) {
-                    val temp = "$arrayName$i 0 = "
+                    val temp = "${arrayName}_$i 0 = "
                     str += temp
                 }
                 if (arrayName !in arrayNames){

@@ -64,7 +64,7 @@ fun parseStr(string: String) {
             "endWhile"
         )
 
-    fun popAtStack(varStack : Stack<String>): String {
+    fun popAtStack(varStack: Stack<String>): String {
         return if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
     }
 
@@ -131,14 +131,10 @@ fun parseStr(string: String) {
             when (i) {
                 "=" -> {
                     val rightVar = popAtStack(varStack)
-                    val leftVar = varStack.pop()
+                    var leftVar = varStack.pop()
 
-                    if (checkOnArray(leftVar) && leftVar !in varNames){
-                        val index = popAtStack(varStack)
-                        variablesMap.put(leftVar+index, rightVar.toLong())
-                    }else{
-                        variablesMap.put(leftVar, rightVar.toLong())
-                    }
+                    variablesMap.put(leftVar, rightVar.toLong())
+
                 }
                 "+" -> {
                     val rightVar = popAtStack(varStack)
@@ -204,12 +200,12 @@ fun parseStr(string: String) {
                     outPutList.add(variablesMap[rightVar].toString())
                     Log.d("app", "$rightVar = " + variablesMap[rightVar].toString())
                 }
-                "printArray" ->{
+                "printArray" -> {
                     val arrName = varStack.pop()
                     var outputString = "["
 
-                    for (i in variablesMap.keys){
-                        if (arrName in i){
+                    for (i in variablesMap.keys) {
+                        if (arrName in i) {
                             outputString += variablesMap[i].toString() + " "
                         }
                     }
@@ -234,7 +230,7 @@ fun parseStr(string: String) {
                     val flag = parseLogicExperssion(logicExpression).toBoolean()
                     if (flag == true) {
                         parseStr(DO)
-                        parseStr( "$logicExpression $DO endWhile")
+                        parseStr("$logicExpression $DO endWhile")
                     }
                 }
             }
