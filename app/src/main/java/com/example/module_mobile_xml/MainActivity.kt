@@ -48,24 +48,12 @@ class MainActivity : AppCompatActivity() {
                     openFragment(CreateVariableFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.arrayInteger -> {
-                    openFragment(ArrayFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
-                }
                 R.id.printVar -> {
                     openFragment(PrintVariableFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
-                R.id.printArray ->{
-                    openFragment(PrintArrayFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
-                }
                 R.id.mathExpression -> {
                     openFragment(MathematicFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
-                }
-                R.id.mathExpressionArray ->{
-                    openFragment(MathematicArrayFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
                 R.id.ifOperator -> {
@@ -143,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                     try {
                         compile()
                     } catch (e: java.lang.Exception) {
-
+                        
                     }
                     val intent = Intent(this@MainActivity, CompilerActivity::class.java)
                     startActivity(intent)

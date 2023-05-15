@@ -70,8 +70,8 @@ class CreateVariableFragment : Fragment() {
                 str+=temp
                 if (varName !in varNames){
                     varNames.add(varName)
-                    variablesMap.put(varName,varData.toLong())
                 }
+                //variablesMap.put(varName,varData.toLong())
 
                 lastBlock.add(Pair(lastBlock.size + 1, str))
             }

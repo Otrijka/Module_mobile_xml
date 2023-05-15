@@ -10,8 +10,6 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
-import checkInMapKeys
-import checkOnArrayReverse
 import com.example.module_mobile_xml.databinding.IfOperatorFragmentBinding
 
 class IfOperatorFragment : Fragment() {
@@ -65,28 +63,26 @@ class IfOperatorFragment : Fragment() {
 
             val scrollView = activity?.findViewById<ScrollView>(R.id.scrollView)
             scrollView!!.post {
-                scrollView.scrollTo(0, scrollView.bottom)
+                scrollView.scrollTo(0,scrollView.bottom)
             }
         }
 
 
         binding.createBlockButton.setOnClickListener {
-            val var1 = binding.var1Input.text.toString()
-            val var2 = binding.var2Input.text.toString()
+            val var1 = binding.var1Input.text.toString().trim()
+            val var2 = binding.var2Input.text.toString().trim()
             val condition = binding.conditionSpinner.selectedItem.toString()
-
-            var newVar1 = var1.replace("[", " ").replace("]", "").trim()
-            var newVar2 = var2.replace("[", " ").replace("]", "").trim()
-            newVar1 = checkInMapKeys(newVar1)
-            newVar2 = checkInMapKeys(newVar2)
-
-            val temp = "$newVar1 $newVar2 $condition "
-            str += temp
-            makeBlockVar(var1, condition, var2)
-            lastBlock.add(Pair(lastBlock.size + 1, str))
-            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+            if ((var1 in varNames && var2 in varNames) || (var1.isDigitsOnly() && var2 in varNames) || (var1 in varNames && var2.isDigitsOnly()) || (var1.isDigitsOnly() && var2.isDigitsOnly()) && (!var1.equals("") && !var2.equals(""))) {
+                val temp = "$var1 $var2 $condition "
+                makeBlockVar(var1, condition, var2)
+                str+=temp
+                lastBlock.add(Pair(lastBlock.size + 1,str))
+                activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+            } else {
+                activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+            }
         }
+
+
     }
-
-
 }

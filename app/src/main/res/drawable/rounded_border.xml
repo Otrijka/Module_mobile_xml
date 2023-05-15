@@ -4,13 +4,13 @@
         android:shape="rectangle" >
         <!-- View border color and width -->
         <stroke
-            android:width="@dimen/inline_border_width"
+            android:width="@dimen/outline_border_width"
             android:color="@color/border_color" >
         </stroke>
 
         <!-- The radius makes the corners rounded -->
         <corners
-            android:radius="10dp"   >
+            android:radius="@dimen/border_raduis"   >
         </corners>
 
     </shape>

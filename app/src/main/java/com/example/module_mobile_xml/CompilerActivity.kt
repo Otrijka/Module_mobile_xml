@@ -28,6 +28,7 @@ class CompilerActivity : AppCompatActivity() {
                 params.setMargins(0, 0, 0, 25)
 
                 layoutParams = params
+                setBackgroundResource(R.drawable.rounded_border)
                 setTextSize(resources.getDimension(R.dimen.block_text_size))
                 setPadding(15, 15, 15, 15)
             }

@@ -10,32 +10,19 @@
                 android:id="@+id/varInteger"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="variable" />
-            <item
-                android:id="@+id/mathExpression"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="math expression" />
-            <item android:id="@+id/printVar"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="print variable"/>
         </menu>
 
     </item>
 
-    <item
-        android:title="Array">
+    <item android:title="Math expression">
         <menu>
             <item
-                android:id="@+id/arrayInteger"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="array" />
-            <item
-                android:id="@+id/mathExpressionArray"
+                android:id="@+id/mathExpression"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="math expression" />
-            <item android:id="@+id/printArray"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="print array"/>
+
         </menu>
+
     </item>
 
     <item android:title="If operator">
@@ -66,6 +53,16 @@
             <item android:id="@+id/endWhile"
                 android:icon="@drawable/ic_launcher_foreground"
                 android:title="endWhile"/>
+        </menu>
+
+    </item>
+
+    <item android:title="Output">
+
+        <menu>
+            <item android:id="@+id/printVar"
+                android:icon="@drawable/ic_launcher_foreground"
+                android:title="print"/>
         </menu>
 
     </item>
