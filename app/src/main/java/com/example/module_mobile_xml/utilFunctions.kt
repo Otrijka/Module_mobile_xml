@@ -1,4 +1,3 @@
-import android.util.Log
 import com.example.module_mobile_xml.*
 import java.util.*
 
@@ -8,7 +7,6 @@ fun normilizeString(text: String): String {
     newText = newText.replace("([(])".toRegex(), "$1 ")
     newText = newText.replace("([)])".toRegex(), " $1")
 
-    newText = reverseVarToIndex(newText)
     return newText
 }
 
@@ -32,13 +30,44 @@ fun reverseVarToIndex(str : String) : String{
     return mainTemp.trim()
 }
 
+
 fun replaceWhiteSpaceOnDots(input: String) : String{
-    val regex = Regex("""\[[^\[\]]*(?:\[[^\[\]]*][^\[\]]*)*]""")
+
+    val regex = Regex("""\[[^\[\]]*\]""")
 
     val result = regex.replace(input) { match ->
         match.value.replace(" ", ",")
     }
     return result
+}
+
+fun replaceSpacesWithCommas(input: String): String {
+    val result = StringBuilder()
+    val stack = mutableListOf<Int>()
+    var insideBracket = false
+
+    for (c in input) {
+        if (c == '[') {
+            stack.add(result.length)
+            insideBracket = true
+        } else if (c == ']') {
+            val startIndex = stack.removeAt(stack.lastIndex)
+            val endIndex = result.length
+            val substring = result.substring(startIndex, endIndex)
+            result.delete(startIndex, endIndex)
+            result.append(substring.replace(" ", ","))
+            insideBracket = stack.isNotEmpty()
+        }
+
+        if (insideBracket) {
+            result.append(c)
+        }
+        else if(!insideBracket){
+            result.append(c)
+        }
+    }
+
+    return result.toString()
 }
 
 fun checkNames(){
@@ -63,6 +92,14 @@ fun checkNames(){
     }
 
 }
+
+fun checkIndex(str : String) : String{
+    if (str in variablesMap.keys){
+        return variablesMap[str].toString()
+    }else{
+        return str
+    }
+}
 fun replaceFigureOnDots(input: String) : String{
     val regex = Regex("\\{\\s*(.*?)\\s*\\}")
     val output = regex.replace(input) { matchResult ->
@@ -70,13 +107,7 @@ fun replaceFigureOnDots(input: String) : String{
     }
     return  output
 }
-fun checkNameInVarNames(){
-    for (i in varNames){
-        if (i !in str){
-            varNames.remove(i)
-        }
-    }
-}
+
 fun toReversePolishNotation(expression: String): String {
     val outputQueue = mutableListOf<String>()
     val operatorStack = Stack<String>()
@@ -93,7 +124,7 @@ fun toReversePolishNotation(expression: String): String {
     for (token in expression.split(" ")) {
         when {
             token.matches(Regex("\\d+")) -> outputQueue.add(token) // Если токен - число, добавляем его в очередь вывода
-            token in varNames || token in arrNamesWithIndexies -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
+            token in varNames || "_" in token -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
             operators.containsKey(token) -> { // Если токен - оператор
                 while (!operatorStack.isEmpty() && operators[operatorStack.peek()] ?: 0 >= operators[token] ?: 0) {
                     outputQueue.add(operatorStack.pop()) // Извлекаем операторы из стека и добавляем их в очередь вывода

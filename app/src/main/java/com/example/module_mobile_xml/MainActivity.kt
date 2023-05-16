@@ -72,6 +72,10 @@ class MainActivity : AppCompatActivity() {
                     openFragment(MathematicFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)
                 }
+                R.id.mathExpressionArray -> {
+                    openFragment(MathematicArrayFragment.newInstance(), R.id.blockSettingsFragment)
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
                 R.id.ifOperator -> {
                     openFragment(IfOperatorFragment.newInstance(), R.id.blockSettingsFragment)
                     binding.drawer.closeDrawer(GravityCompat.END)

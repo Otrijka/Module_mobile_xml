@@ -1,7 +1,11 @@
 package com.example.module_mobile_xml
 
 import android.util.Log
+import androidx.collection.arrayMapOf
+import androidx.core.text.isDigitsOnly
+import checkIndex
 import replaceFigureOnDots
+import replaceSpacesWithCommas
 import replaceWhiteSpaceOnDots
 import java.util.Stack
 
@@ -16,11 +20,13 @@ var outPutList = ArrayList<String>()
 fun compile() {
 
     Log.d("app", "-----------------\nCompile starting")
+    Log.d("app", "Str: " + str)
     outPutList.clear()
 
-    if (str != ""){
+    if (str != "") {
         parseStr(str)
     }
+    outPutList.add("\nCompile end!")
 
     Log.d("app", "varMap: " + variablesMap)
     Log.d("app", "arrNames: " + arrNames)
@@ -33,7 +39,6 @@ fun compile() {
 
 
 fun parseStr(string: String) {
-    Log.d("app", "StartStr: " + string)
     var str = string.replace(",", " ").trim()
 
     if (str.toCharArray()[0] == '[') {
@@ -46,9 +51,9 @@ fun parseStr(string: String) {
 
     str = str.trim()
     str = replaceFigureOnDots(str)
-    str = replaceWhiteSpaceOnDots(str)
+    str = replaceSpacesWithCommas(str)
 
-    Log.d("app", "nextStr: " + str)
+    Log.d("app", "currentStr: " + str)
     val varStack = Stack<String>()
 
     val actionList =
@@ -71,7 +76,7 @@ fun parseStr(string: String) {
             "endWhile"
         )
 
-    fun popAtStack(varStack : Stack<String>): String {
+    fun popAtStack(varStack: Stack<String>): String {
         return if (varStack.peek() in variablesMap.keys) variablesMap[varStack.pop()].toString() else varStack.pop()
     }
 
@@ -87,9 +92,7 @@ fun parseStr(string: String) {
         var str = string.replace(",", " ").trim().drop(1).dropLast(1)
 
         str = str.trim()
-        str = replaceWhiteSpaceOnDots(str)
 
-        Log.d("app", "logicExp: " + str)
         var varStack = Stack<String>()
 
         for (i in str.split(" ")) {
@@ -132,15 +135,24 @@ fun parseStr(string: String) {
     for (i in str.split(" ")) {
 
         if (i !in actionList && i != "" && i != "[" && i != "]" && i != " ") {
-            varStack.add(i)
+            if ("_" in i && "," !in i && "[" !in i && "]" !in i){
+                val index = if (i.split("_").last().isDigitsOnly()) i.split("_").last() else variablesMap[i.split("_").last()].toString()
+                varStack.add("${i.split("_").first()}_$index")
+            }else{
+                varStack.add(i)
+            }
         } else {
 
             when (i) {
                 "=" -> {
                     val rightVar = popAtStack(varStack)
-                    var leftVar = varStack.pop()
-
-                    variablesMap.put(leftVar, rightVar.toLong())
+                    val leftVar = varStack.pop()
+                    if (leftVar in arrNames){
+                        val index = checkIndex(varStack.pop())
+                        variablesMap.put("${leftVar}_${index}", rightVar.toLong())
+                    }else{
+                        variablesMap.put(leftVar, rightVar.toLong())
+                    }
                 }
                 "+" -> {
                     val rightVar = popAtStack(varStack)
@@ -206,11 +218,11 @@ fun parseStr(string: String) {
                     outPutList.add(variablesMap[rightVar].toString())
                     Log.d("app", "$rightVar = " + variablesMap[rightVar].toString())
                 }
-                "printArray" ->{
+                "printArray" -> {
                     val rightVar = varStack.pop()
                     var tempStr = "["
-                    for (name in variablesMap.keys){
-                        if ("${rightVar}_" in name){
+                    for (name in variablesMap.keys) {
+                        if ("${rightVar}_" in name) {
                             tempStr += variablesMap[name].toString() + " "
                         }
                     }
@@ -235,7 +247,7 @@ fun parseStr(string: String) {
                     val flag = parseLogicExperssion(logicExpression).toBoolean()
                     if (flag == true) {
                         parseStr(DO)
-                        parseStr( "$logicExpression $DO endWhile")
+                        parseStr("$logicExpression $DO endWhile")
                     }
                 }
             }

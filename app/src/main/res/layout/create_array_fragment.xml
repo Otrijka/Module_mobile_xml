@@ -61,15 +61,52 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/createBlockButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:backgroundTint="@color/button_color"
-            android:text="@string/make_block_button_text"
-            android:textAllCaps="false"
-            android:textSize="@dimen/normal_text_size" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/createBlockButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_color"
+                android:text="@string/make_block_button_text"
+                android:textAllCaps="false"
+                android:textSize="@dimen/normal_text_size" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/range_first_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="3"
+                android:background="@drawable/rounded_border"
+                android:hint="от"
+                android:inputType="number"
+                android:maxLength="10"
+                android:padding="5dp"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColorHint="@color/blue" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/range_second_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:layout_weight="3"
+                android:background="@drawable/rounded_border"
+                android:hint="до"
+                android:inputType="number"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColorHint="@color/blue" />
+        </LinearLayout>
 
     </LinearLayout>
 

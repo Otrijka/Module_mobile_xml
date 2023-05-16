@@ -61,13 +61,22 @@ class CreateArrayFragment : Fragment() {
 
             val arrName = binding.nameHolder.text.toString()
             val arrSize = binding.dataHolder.text.toString()
+            var startRange = binding.rangeFirstInput.text.toString()
+            var endRange = binding.rangeSecondInput.text.toString()
 
-            if (arrName.length != 0 && arrSize.length != 0 && !arrName.first().isDigit() && arrName !in arrNames && arrName !in varNames) {
+            if (arrName.length != 0 && arrSize.length != 0 && startRange.length != 0 && endRange.length != 0 && !arrName.first().isDigit() && arrName !in arrNames && arrName !in varNames) {
+
+                if (startRange.toInt() > endRange.toInt()){
+                    val temp = endRange
+                    endRange = startRange
+                    startRange = temp
+                }
                 makeBlockVar(arrName, arrSize)
                 var temp = ""
                 for (i in 0 until arrSize.toInt()){
                     arrNamesWithIndexies.add("${arrName}_${i}")
-                    temp += "${arrName}_${i} 0 = "
+                    val value = (startRange.toInt()..endRange.toInt()).random()
+                    temp += "${arrName}_${i} ${value} = "
                 }
                 str+=temp
                 arrNames.add(arrName)
