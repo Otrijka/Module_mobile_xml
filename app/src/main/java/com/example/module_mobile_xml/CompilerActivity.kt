@@ -12,7 +12,6 @@ class CompilerActivity : AppCompatActivity() {
         val binding = ActivityCompilerBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        compile()
         val layout = binding.outputPlace
 
         outPutList.forEach{
