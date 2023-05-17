@@ -5,7 +5,7 @@
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/code_place"
+    android:background="@color/code_place_1"
     tools:context=".MainActivity"
     tools:openDrawer="end">
 
@@ -52,7 +52,7 @@
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bottom_nav_bg"
+            android:background="@drawable/bottom_nav_bg_1"
             app:itemIconTint="@color/start_menu_text_color"
             app:itemTextColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -70,8 +70,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:layout_marginTop="8dp"
-        android:background="@drawable/drawer_bg"
-        android:backgroundTint="@color/drawer_color"
+        android:background="@drawable/drawer_bg_1"
         app:itemIconSize="50dp"
         app:itemIconTint="@color/start_menu_text_color"
         app:itemTextColor="@color/white"

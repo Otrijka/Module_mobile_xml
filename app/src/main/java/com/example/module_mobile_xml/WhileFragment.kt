@@ -71,16 +71,25 @@ class WhileFragment : Fragment() {
 
 
         binding.createBlockButton.setOnClickListener {
-            val var1 = binding.varSpinner.selectedItem.toString()
-            val var2 = binding.var2Input.text.toString().trim()
-            val condition = binding.conditionSpinner.selectedItem.toString()
-            if ((var1 in varNames && var2 in varNames) || (var1.isDigitsOnly() && var2 in varNames) || (var1 in varNames && var2.isDigitsOnly()) || (var1.isDigitsOnly() && var2.isDigitsOnly()) && (!var1.equals("") && !var2.equals(""))) {
-                val temp = "{$var1 $var2 $condition} [ "
-                makeBlockVar(var1, condition, var2)
-                str+=temp
-                lastBlock.add(Pair(lastBlock.size + 1,str))
-                activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
-            } else {
+            try {
+
+
+                val var1 = binding.varSpinner.selectedItem.toString()
+                val var2 = binding.var2Input.text.toString().trim()
+                val condition = binding.conditionSpinner.selectedItem.toString()
+                if ((var1 in varNames && var2 in varNames) || (var1.isDigitsOnly() && var2 in varNames) || (var1 in varNames && var2.isDigitsOnly()) || (var1.isDigitsOnly() && var2.isDigitsOnly()) && (!var1.equals(
+                        ""
+                    ) && !var2.equals(""))
+                ) {
+                    val temp = "{$var1 $var2 $condition} [ "
+                    makeBlockVar(var1, condition, var2)
+                    str += temp
+                    lastBlock.add(Pair(lastBlock.size + 1, str))
+                    activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+                } else {
+                    activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+                }
+            }catch (e:Exception){
                 activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
             }
         }

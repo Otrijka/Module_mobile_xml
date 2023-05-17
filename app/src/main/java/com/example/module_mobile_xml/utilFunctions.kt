@@ -10,27 +10,6 @@ fun normilizeString(text: String): String {
     return newText
 }
 
-fun reverseVarToIndex(str : String) : String{
-    var mainTemp = ""
-
-    for (word in str.split(" ")){
-        if ("_" in word){
-            val name = word.split("_").first()
-            var index = word.split("_").last()
-
-            if (index in varNames){
-                index = variablesMap[index].toString()
-            }
-
-            mainTemp += "${name}_$index "
-        }else{
-            mainTemp += "$word "
-        }
-    }
-    return mainTemp.trim()
-}
-
-
 fun replaceWhiteSpaceOnDots(input: String) : String{
 
     val regex = Regex("""\[[^\[\]]*\]""")
@@ -124,7 +103,7 @@ fun toReversePolishNotation(expression: String): String {
     for (token in expression.split(" ")) {
         when {
             token.matches(Regex("\\d+")) -> outputQueue.add(token) // Если токен - число, добавляем его в очередь вывода
-            token in varNames || "_" in token -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
+            token in varNames || token in arrNamesWithIndexies || (arrNames.contains(token.split("_").first()) && varNames.contains(token.split("_").last()) && arrNamesWithIndexies.contains("${token.split("_").first()}_${variablesMap[token.split("_").last()]}")) -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
             operators.containsKey(token) -> { // Если токен - оператор
                 while (!operatorStack.isEmpty() && operators[operatorStack.peek()] ?: 0 >= operators[token] ?: 0) {
                     outputQueue.add(operatorStack.pop()) // Извлекаем операторы из стека и добавляем их в очередь вывода

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/code_place"
+    android:background="@color/code_place_1"
     tools:context=".StartMenu">
 
     <TextView
@@ -19,10 +19,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.215" />
 
     <TextView
         android:id="@+id/startButton"
@@ -30,8 +29,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_border"
         android:paddingStart="20dp"
-        android:paddingEnd="20dp"
         android:paddingTop="15dp"
+        android:paddingEnd="20dp"
         android:paddingBottom="15dp"
         android:shadowColor="@color/blue"
 
@@ -42,7 +41,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appName" />
+        app:layout_constraintTop_toBottomOf="@+id/appName"
+        app:layout_constraintVertical_bias="0.677" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

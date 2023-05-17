@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item
-        android:title="Variable">
+    <item android:title="Variable">
         <menu>
             <item
                 android:id="@+id/varInteger"
@@ -15,13 +14,12 @@
                 android:title="VAR: math expression" />
             <item
                 android:id="@+id/printVar"
-                android:title="VAR: print"/>
+                android:title="VAR: print" />
         </menu>
 
     </item>
 
-    <item
-        android:title="Array">
+    <item android:title="Array">
         <menu>
             <item
                 android:id="@+id/arrayInteger"
@@ -31,7 +29,7 @@
                 android:title="[ ] math expression" />
             <item
                 android:id="@+id/printArr"
-                android:title="[ ] print"/>
+                android:title="[ ] print" />
         </menu>
 
 
@@ -40,18 +38,18 @@
     <item android:title="If operator">
 
         <menu>
-            <item android:id="@+id/ifOperator"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="if"/>
-            <item android:id="@+id/thenOperator"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="then"/>
-            <item android:id="@+id/elseOperator"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="else"/>
-            <item android:id="@+id/endIf"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="endIf"/>
+            <item
+                android:id="@+id/ifOperator"
+                android:title="if" />
+            <item
+                android:id="@+id/thenOperator"
+                android:title="then" />
+            <item
+                android:id="@+id/elseOperator"
+                android:title="else" />
+            <item
+                android:id="@+id/endIf"
+                android:title="endIf" />
         </menu>
 
     </item>
@@ -59,12 +57,12 @@
     <item android:title="While operator">
 
         <menu>
-            <item android:id="@+id/whileOperator"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="while"/>
-            <item android:id="@+id/endWhile"
-                android:icon="@drawable/ic_launcher_foreground"
-                android:title="endWhile"/>
+            <item
+                android:id="@+id/whileOperator"
+                android:title="while" />
+            <item
+                android:id="@+id/endWhile"
+                android:title="endWhile" />
         </menu>
 
     </item>

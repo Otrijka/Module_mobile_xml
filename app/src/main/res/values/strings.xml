@@ -15,5 +15,6 @@
     <string name="new_arr_capacity_block_hint">Размер</string>
 
     <string name="start_button_text">Start</string>
+    <string name="app_label">Code block</string>
 
 </resources>

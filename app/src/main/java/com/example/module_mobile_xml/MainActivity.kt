@@ -1,11 +1,14 @@
 package com.example.module_mobile_xml
 
+import android.content.ClipData.Item
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.GravityCompat
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import checkNames
 import com.example.module_mobile_xml.databinding.ActivityMainBinding
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 
             parentLayout?.addView(block)
         }
+
         //Листенеры на элементы drawer
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -168,11 +172,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.compile_button -> {
                     variablesMap.clear()
-                    try {
-                        compile()
-                    } catch (e: java.lang.Exception) {
 
-                    }
                     val intent = Intent(this@MainActivity, CompilerActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(
@@ -199,6 +199,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openFragment(fragment: Fragment, idHolder: Int) {
-        supportFragmentManager.beginTransaction().replace(idHolder, fragment).commit()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit)
+        transaction.replace(idHolder, fragment)
+        transaction.commit()
     }
 }

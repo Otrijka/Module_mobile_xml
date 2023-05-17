@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
@@ -18,6 +19,7 @@ class CreateArrayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = CreateArrayFragmentBinding.inflate(inflater)
+
         return binding.root
     }
 

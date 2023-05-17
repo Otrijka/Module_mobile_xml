@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.MathematicArrayFragmentBinding
 import normilizeString
@@ -62,7 +63,9 @@ class MathematicArrayFragment : Fragment() {
                 val index = binding.indexInput.text.toString()
                 var inputExp = binding.mathExpInput.text.toString()
 
-                if (inputExp.length != 0 && index.length != 0) {
+                val indexIsValid = if ((index.isDigitsOnly() && arrNamesWithIndexies.contains("${arrName}_${index.split("_").last()}"))||(index.split("_").last() in varNames && "${arrName}_${variablesMap[index.split("_").last()]}" in arrNamesWithIndexies)) true else false
+
+                if (inputExp.length != 0 && index.length != 0 && "-" !in index && indexIsValid) {
 
                     val tempInputExp = inputExp
 

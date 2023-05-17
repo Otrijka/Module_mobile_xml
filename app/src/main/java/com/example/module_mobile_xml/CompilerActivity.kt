@@ -3,6 +3,7 @@ package com.example.module_mobile_xml
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import com.example.module_mobile_xml.databinding.ActivityCompilerBinding
 
@@ -11,7 +12,7 @@ class CompilerActivity : AppCompatActivity() {
         val binding = ActivityCompilerBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        compile()
         val layout = binding.outputPlace
 
         outPutList.forEach{
@@ -34,6 +35,6 @@ class CompilerActivity : AppCompatActivity() {
 
             layout.addView(block)
         }
-
     }
+
 }

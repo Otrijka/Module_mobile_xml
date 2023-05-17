@@ -12,9 +12,15 @@
     <color name="green_400">#2aeb56</color>
     <color name="blue">#8998F6</color>
 
-    <color name="drawer_color">#226BAC</color>
-    <color name="code_place">#6DABE2</color>
-    <color name="bottom_nav_color">#226BAC</color>
+    <color name="code_place_1">#6DABE2</color>
+    <color name="code_place_2">#65ED9C</color>
+
+    <color name="bottom_nav_color_1">#226BAC</color>
+    <color name="bottom_nav_color_2">#198344</color>
+
+    <color name="drawer_color_1">#226BAC</color>
+    <color name="drawer_color_2">#198344</color>
+
     <color name="text_color">#031067</color>
     <color name="button_color">#2636A6</color>
 

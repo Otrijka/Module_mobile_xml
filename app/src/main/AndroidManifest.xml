@@ -6,29 +6,35 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/splash_screen"
-        android:label="Module_mobile_xml"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_label"
         android:supportsRtl="true"
         android:theme="@style/Theme.Module_mobile_xml"
         tools:targetApi="31">
         <activity
+            android:screenOrientation="portrait"
             android:name=".CompilerActivity"
             android:exported="false" />
-        <!-- Splash screen -->
+
         <activity
+            android:screenOrientation="portrait"
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Start menu -->
+        </activity>
+
         <activity
+            android:screenOrientation="portrait"
             android:name=".StartMenu"
-            android:exported="false" /> <!-- Main activity -->
-        <activity android:name=".MainActivity" />
+            android:exported="false" />
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

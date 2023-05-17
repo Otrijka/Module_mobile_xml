@@ -10,7 +10,7 @@
 
         <!-- The radius makes the corners rounded -->
         <corners
-            android:radius="@dimen/border_raduis"   >
+            android:radius="@dimen/normal_border_raduis"   >
         </corners>
 
     </shape>

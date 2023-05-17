@@ -69,10 +69,9 @@ class IfOperatorFragment : Fragment() {
 
 
         binding.createBlockButton.setOnClickListener {
+
             var var1 = binding.var1Input.text.toString().trim()
-
             var var2 = binding.var2Input.text.toString().trim()
-
             val condition = binding.conditionSpinner.selectedItem.toString()
 
             if (!var1.equals("") && !var2.equals("")) {

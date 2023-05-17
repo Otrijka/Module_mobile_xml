@@ -16,6 +16,8 @@ class StartMenu : AppCompatActivity() {
         binding.startButton.setOnClickListener {
             // TODO: Переписать удаление данных при выходе с активити
             varNames.clear()
+            arrNames.clear()
+            arrNamesWithIndexies.clear()
             variablesMap.clear()
             str = ""
             lastBlock.clear()
