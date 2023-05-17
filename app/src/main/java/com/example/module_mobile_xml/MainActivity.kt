@@ -172,13 +172,13 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.compile_button -> {
                     variablesMap.clear()
+                    compile()
                     val intent = Intent(this@MainActivity, CompilerActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(
                         androidx.appcompat.R.anim.abc_slide_in_bottom,
                         androidx.appcompat.R.anim.abc_slide_out_top
                     )
-                    compile()
                 }
                 R.id.delete_last_button -> {
                     if (lastBlock.size != 0) {
