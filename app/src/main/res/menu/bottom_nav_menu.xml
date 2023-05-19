@@ -3,18 +3,18 @@
 
     <item android:id="@+id/delete_last_button"
         android:icon="@drawable/baseline_delete_24"
-        android:title="Delete last">
+        android:title="@string/delete_last_bottom_menu">
     </item>
 
     <item android:id="@+id/compile_button"
         android:icon="@drawable/baseline_send_24"
-        android:title="Compile">
+        android:title="@string/compile_bottom_menu">
     </item>
 
 
     <item android:id="@+id/blocks_menu_button"
         android:icon="@drawable/baseline_menu_24"
-        android:title="Blocks">
+        android:title="@string/blocks_bottom_menu">
     </item>
 
 </menu>

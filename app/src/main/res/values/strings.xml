@@ -3,18 +3,49 @@
     <!-- TODO: Remove or change this placeholder text -->
 
 
-    <string name="make_block_button_text">Создать</string>
 
-    <string name="hint_math_exp_block">Math expression</string>
+    <!-- Blocks-->
+    <string name="hint_math_exp_block">value</string>
     <string name="hint_index_block">Index</string>
-
     <string name="new_var_name_block_hint">Название переменной</string>
-    <string name="new_var_data_block_hint">Значение</string>
-
     <string name="new_arr_name_block_hint">Название массива</string>
+    <string name="new_var_data_block_hint">Значение</string>
     <string name="new_arr_capacity_block_hint">Размер</string>
+    <string name="make_block_button_text">Создать</string>
+    <string name="block_set_equal">=</string>
+    <string name="arr_block_start_range_value">от</string>
+    <string name="arr_block_end_range_value">до</string>
 
+
+    <!-- Main menu -->
     <string name="start_button_text">Start</string>
     <string name="app_label">Code block</string>
+
+    <!-- Botton menu -->
+    <string name="delete_last_bottom_menu">Delete last</string>
+    <string name="compile_bottom_menu">Compile</string>
+    <string name="blocks_bottom_menu">Blocks</string>
+
+    <!-- Navigation menu -->
+    <string name="first_big_title_nav_menu">Variable</string>
+    <string name="second_big_title_nav_menu">Array</string>
+    <string name="third_big_title_nav_menu">If operator</string>
+    <string name="fourth_big_title_nav_menu">While operator</string>
+
+    <string name="title_1_1_nav_menu">VAR: variable</string>
+    <string name="title_1_2_nav_menu">VAR: math expression</string>
+    <string name="title_1_3_nav_menu">VAR: print</string>
+
+    <string name="title_2_1_nav_menu">[ ] array</string>
+    <string name="title_2_2_nav_menu">[ ] math expression</string>
+    <string name="title_2_3_nav_menu">[ ] print</string>
+
+    <string name="title_3_1_nav_menu">if</string>
+    <string name="title_3_2_nav_menu">then</string>
+    <string name="title_3_3_nav_menu">else</string>
+    <string name="title_3_4_nav_menu">endIf</string>
+
+    <string name="title_4_1_nav_menu">while</string>
+    <string name="title_4_2_nav_menu">endWhile</string>
 
 </resources>

@@ -29,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="var"
+                    android:hint="@string/hint_math_exp_block"
                     android:inputType="textVisiblePassword"
                     android:textAlignment="center" />
 
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="var"
+                    android:hint="@string/hint_math_exp_block"
                     android:inputType="textVisiblePassword"
                     android:textAlignment="center" />
 

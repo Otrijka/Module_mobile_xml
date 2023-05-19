@@ -3,66 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Variable">
+    <item android:title="@string/first_big_title_nav_menu">
         <menu>
             <item
                 android:id="@+id/varInteger"
-                android:title="VAR: variable" />
+                android:title="@string/title_1_1_nav_menu" />
 
             <item
                 android:id="@+id/mathExpressionVariable"
-                android:title="VAR: math expression" />
+                android:title="@string/title_1_2_nav_menu" />
             <item
                 android:id="@+id/printVar"
-                android:title="VAR: print" />
+                android:title="@string/title_1_3_nav_menu" />
         </menu>
 
     </item>
 
-    <item android:title="Array">
+    <item android:title="@string/second_big_title_nav_menu">
         <menu>
             <item
                 android:id="@+id/arrayInteger"
-                android:title="[ ] array" />
+                android:title="@string/title_2_1_nav_menu" />
             <item
                 android:id="@+id/mathExpressionArray"
-                android:title="[ ] math expression" />
+                android:title="@string/title_2_2_nav_menu" />
             <item
                 android:id="@+id/printArr"
-                android:title="[ ] print" />
+                android:title="@string/title_2_3_nav_menu" />
         </menu>
 
 
     </item>
 
-    <item android:title="If operator">
+    <item android:title="@string/third_big_title_nav_menu">
 
         <menu>
             <item
                 android:id="@+id/ifOperator"
-                android:title="if" />
+                android:title="@string/title_3_1_nav_menu" />
             <item
                 android:id="@+id/thenOperator"
-                android:title="then" />
+                android:title="@string/title_3_2_nav_menu" />
             <item
                 android:id="@+id/elseOperator"
-                android:title="else" />
+                android:title="@string/title_3_3_nav_menu" />
             <item
                 android:id="@+id/endIf"
-                android:title="endIf" />
+                android:title="@string/title_3_4_nav_menu" />
         </menu>
 
     </item>
 
-    <item android:title="While operator">
+    <item android:title="@string/fourth_big_title_nav_menu">
 
         <menu>
             <item
                 android:id="@+id/whileOperator"
-                android:title="while" />
+                android:title="@string/title_4_1_nav_menu" />
             <item
                 android:id="@+id/endWhile"
-                android:title="endWhile" />
+                android:title="@string/title_4_2_nav_menu" />
         </menu>
 
     </item>
