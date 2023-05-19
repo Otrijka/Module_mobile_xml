@@ -19,8 +19,8 @@ var outPutList = ArrayList<String>()
 
 fun compile() {
 
-    Log.d("app", "-----------------\nCompile starting")
-    Log.d("app", "Str: " + str)
+    //Log.d("app", "-----------------\nCompile starting")
+    //Log.d("app", "Str: " + str)
     outPutList.clear()
 
     if (str != "") {
@@ -28,11 +28,11 @@ fun compile() {
     }
     outPutList.add("\nCompile end!")
 
-    Log.d("app", "varMap: " + variablesMap)
-    Log.d("app", "arrNames: " + arrNames)
-    Log.d("app", "arrNamesWIndex: " + arrNamesWithIndexies)
-    Log.d("app", "varNames: " + varNames)
-    Log.d("app", "varMap: " + variablesMap)
+    //Log.d("app", "varMap: " + variablesMap)
+    //Log.d("app", "arrNames: " + arrNames)
+    //Log.d("app", "arrNamesWIndex: " + arrNamesWithIndexies)
+    //Log.d("app", "varNames: " + varNames)
+    //Log.d("app", "varMap: " + variablesMap)
     Log.d("app", "Compile end\n-----------------")
 
 }

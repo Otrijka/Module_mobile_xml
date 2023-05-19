@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.module_mobile_xml.databinding.PrintArrayFragmentBinding
@@ -46,6 +47,7 @@ class PrintArrayFragment : Fragment() {
             scrollView!!.post {
                 scrollView.scrollTo(0,scrollView.bottom)
             }
+            block.startAnimation(AnimationUtils.loadAnimation(context,R.anim.fall_block))
         }
 
         val varListForPrint = binding.arrList

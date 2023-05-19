@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -67,6 +68,7 @@ class WhileFragment : Fragment() {
             scrollView!!.post {
                 scrollView.scrollTo(0,scrollView.bottom)
             }
+            block.startAnimation(AnimationUtils.loadAnimation(context,R.anim.fall_block))
         }
 
 

@@ -5,7 +5,9 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.core.view.children
@@ -50,6 +52,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             parentLayout?.addView(block)
+
+            val scrollView = binding.scrollView
+            scrollView.post {
+                scrollView.scrollTo(0,scrollView.bottom)
+            }
+            block.startAnimation(AnimationUtils.loadAnimation(this,R.anim.fall_block))
         }
 
         //Листенеры на элементы drawer
