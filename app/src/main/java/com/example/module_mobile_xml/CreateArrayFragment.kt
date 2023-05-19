@@ -86,7 +86,6 @@ class CreateArrayFragment : Fragment() {
                 arrNames.add(arrName)
                 lastBlock.add(Pair(lastBlock.size + 1, str))
             }
-
             activity?.getSupportFragmentManager()?.beginTransaction()?.remove(this)?.commit()
         }
     }

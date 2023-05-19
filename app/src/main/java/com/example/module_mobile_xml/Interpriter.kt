@@ -172,7 +172,11 @@ fun parseStr(string: String) {
                 "/" -> {
                     val rightVar = popAtStack(varStack)
                     val leftVar = popAtStack(varStack)
-                    varStack.push((leftVar.toLong() / rightVar.toLong()).toString())
+                    try{
+                        varStack.push((leftVar.toLong() / rightVar.toLong()).toString())
+                    }catch (e:java.lang.ArithmeticException){
+                        varStack.push((leftVar.toLong() / 1).toString())
+                    }
                 }
                 "^" -> {
                     val rightVar = popAtStack(varStack)
