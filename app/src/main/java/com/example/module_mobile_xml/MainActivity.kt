@@ -184,7 +184,7 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this@MainActivity, CompilerActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(
-                        androidx.appcompat.R.anim.abc_slide_in_bottom,
+                        androidx.appcompat.R.anim.abc_popup_enter,
                         androidx.appcompat.R.anim.abc_slide_out_top
                     )
                 }

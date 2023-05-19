@@ -12,37 +12,41 @@
     <color name="green_400">#2aeb56</color>
     <color name="blue">#8998F6</color>
 
+    <!-- code place colors -->
     <color name="code_place_1">#6DABE2</color>
-    <color name="code_place_2">#65ED9C</color>
-
     <color name="bottom_nav_color_1">#226BAC</color>
-    <color name="bottom_nav_color_2">#198344</color>
-
     <color name="drawer_color_1">#226BAC</color>
-    <color name="drawer_color_2">#198344</color>
 
-    <color name="text_color">#031067</color>
+    <!-- button colors -->
     <color name="button_color">#2636A6</color>
 
+    <!-- variable blocks colors -->
     <color name="variable_block">#4DFF00</color>
     <color name="math_expression_block">#29BBC8</color>
     <color name="print_variable_block">#B86907</color>
 
+    <!-- array blocks colors -->
     <color name="arr_block">#4DFF00</color>
     <color name="math_expression_arr_block">#29BBC8</color>
     <color name="print_arr_block">#B86907</color>
 
+
+    <!-- if blocks colors -->
     <color name="if_block">#EAFF30</color>
     <color name="then_block">#F4B006</color>
     <color name="else_block">#F4B006</color>
     <color name="endif_block">#EAFF30</color>
 
 
+    <!-- while blocks colors -->
     <color name="while_block">#30FFB7</color>
     <color name="endwhile_block">#30FFB7</color>
 
+    <!-- border color -->
     <color name="border_color">#000000</color>
 
+    <!-- text color -->
     <color name="start_menu_text_color">#FFFFFF</color>
+    <color name="text_color">#031067</color>
 
 </resources>

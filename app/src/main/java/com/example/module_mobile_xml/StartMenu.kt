@@ -24,7 +24,7 @@ class StartMenu : AppCompatActivity() {
             outPutList.clear()
             startActivity(intent)
             overridePendingTransition(
-                androidx.appcompat.R.anim.abc_slide_in_bottom,
+                androidx.appcompat.R.anim.abc_fade_in,
                 androidx.appcompat.R.anim.abc_slide_out_top
             )
         }
