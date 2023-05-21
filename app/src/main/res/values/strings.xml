@@ -3,10 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
 
 
-
     <!-- Blocks-->
-    <string name="hint_math_exp_block">value</string>
-    <string name="hint_index_block">Index</string>
+    <string name="hint_math_exp_block">Число</string>
+    <string name="hint_index_block">Индекс</string>
     <string name="new_var_name_block_hint">Название переменной</string>
     <string name="new_arr_name_block_hint">Название массива</string>
     <string name="new_var_data_block_hint">Значение</string>
@@ -18,7 +17,7 @@
 
 
     <!-- Main menu -->
-    <string name="start_button_text">Start</string>
+    <string name="start_button_text">Старт</string>
     <string name="app_label">Code block</string>
 
     <!-- Botton menu -->
@@ -27,10 +26,11 @@
     <string name="blocks_bottom_menu">Blocks</string>
 
     <!-- Navigation menu -->
-    <string name="first_big_title_nav_menu">Variable</string>
-    <string name="second_big_title_nav_menu">Array</string>
+    <string name="first_big_title_nav_menu">Переменная</string>
+    <string name="second_big_title_nav_menu">Массив</string>
     <string name="third_big_title_nav_menu">If operator</string>
-    <string name="fourth_big_title_nav_menu">While operator</string>
+    <string name="fourth_big_title_nav_menu">For operator</string>
+    <string name="fifth_big_title_nav_menu">While operator</string>
 
     <string name="title_1_1_nav_menu">VAR: variable</string>
     <string name="title_1_2_nav_menu">VAR: math expression</string>
@@ -45,7 +45,13 @@
     <string name="title_3_3_nav_menu">else</string>
     <string name="title_3_4_nav_menu">endIf</string>
 
-    <string name="title_4_1_nav_menu">while</string>
-    <string name="title_4_2_nav_menu">endWhile</string>
+    <string name="title_4_1_nav_menu">for</string>
+    <string name="title_4_2_nav_menu">endFor</string>
+
+    <string name="title_5_1_nav_menu">while</string>
+    <string name="title_5_2_nav_menu">endWhile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

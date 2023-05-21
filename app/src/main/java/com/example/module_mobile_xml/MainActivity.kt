@@ -64,37 +64,32 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.varInteger -> {
-                    openFragment(CreateVariableFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
+                    openFragment(CreateVariableFragment.newInstance())
                 }
                 R.id.arrayInteger -> {
-                    openFragment(CreateArrayFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
+                    openFragment(CreateArrayFragment.newInstance())
                 }
                 R.id.printVar -> {
-                    openFragment(PrintVariableFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
+                    openFragment(PrintVariableFragment.newInstance())
                 }
                 R.id.printArr ->{
-                    openFragment(PrintArrayFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
+                    openFragment(PrintArrayFragment.newInstance())
                 }
 
                 R.id.mathExpressionVariable -> {
-                    openFragment(MathematicFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
+                    openFragment(MathematicFragment.newInstance())
                 }
                 R.id.mathExpressionArray -> {
-                    openFragment(MathematicArrayFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
+                    openFragment(MathematicArrayFragment.newInstance())
                 }
                 R.id.ifOperator -> {
-                    openFragment(IfOperatorFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
+                    openFragment(IfOperatorFragment.newInstance())
                 }
                 R.id.whileOperator -> {
-                    openFragment(WhileFragment.newInstance(), R.id.blockSettingsFragment)
-                    binding.drawer.closeDrawer(GravityCompat.END)
+                    openFragment(WhileFragment.newInstance())
+                }
+                R.id.forOperator ->{
+                    openFragment(ForFragment.newInstance())
                 }
                 R.id.endWhile -> {
                     makeCustomBlock(
@@ -105,6 +100,24 @@ class MainActivity : AppCompatActivity() {
                         25
                     )
                     str += "] endWhile "
+                    lastBlock.add(Pair(lastBlock.size + 1, str))
+
+                    val scrollView = binding.scrollView
+                    scrollView.post {
+                        scrollView.scrollTo(0, scrollView.bottom)
+                    }
+
+                    binding.drawer.closeDrawer(GravityCompat.END)
+                }
+                R.id.endFor ->{
+                    makeCustomBlock(
+                        "endFor",
+                        R.drawable.for_block,
+                        R.dimen.little_block_text_size,
+                        25,
+                        25
+                    )
+                    str += "] endFor "
                     lastBlock.add(Pair(lastBlock.size + 1, str))
 
                     val scrollView = binding.scrollView
@@ -206,10 +219,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun openFragment(fragment: Fragment, idHolder: Int) {
+    //Открытие фрагмента с закрытием drawer`a
+    private fun openFragment(fragment: Fragment, idHolder: Int = R.id.blockSettingsFragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit)
         transaction.replace(idHolder, fragment)
         transaction.commit()
+        binding.drawer.closeDrawer(GravityCompat.END)
     }
 }

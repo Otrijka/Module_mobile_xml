@@ -54,15 +54,28 @@
 
     </item>
 
-    <item android:title="@string/fourth_big_title_nav_menu">
+    <item android:title="For operator">
+
+        <menu>
+            <item
+                android:id="@+id/forOperator"
+                android:title="@string/title_4_1_nav_menu" />
+            <item
+                android:id="@+id/endFor"
+                android:title="@string/title_4_2_nav_menu" />
+        </menu>
+
+    </item>
+
+    <item android:title="@string/fifth_big_title_nav_menu">
 
         <menu>
             <item
                 android:id="@+id/whileOperator"
-                android:title="@string/title_4_1_nav_menu" />
+                android:title="@string/title_5_1_nav_menu" />
             <item
                 android:id="@+id/endWhile"
-                android:title="@string/title_4_2_nav_menu" />
+                android:title="@string/title_5_2_nav_menu" />
         </menu>
 
     </item>

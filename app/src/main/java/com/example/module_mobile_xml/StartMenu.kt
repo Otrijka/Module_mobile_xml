@@ -14,7 +14,6 @@ class StartMenu : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
 
         binding.startButton.setOnClickListener {
-            // TODO: Переписать удаление данных при выходе с активити
             varNames.clear()
             arrNames.clear()
             arrNamesWithIndexies.clear()

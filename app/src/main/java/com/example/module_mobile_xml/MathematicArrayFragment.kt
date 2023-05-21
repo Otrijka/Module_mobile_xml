@@ -65,7 +65,7 @@ class MathematicArrayFragment : Fragment() {
                 val index = binding.indexInput.text.toString()
                 var inputExp = binding.mathExpInput.text.toString()
 
-                val indexIsValid = if ((index.isDigitsOnly() && arrNamesWithIndexies.contains("${arrName}_${index.split("_").last()}"))||(index.split("_").last() in varNames && "${arrName}_${variablesMap[index.split("_").last()]}" in arrNamesWithIndexies)) true else false
+                val indexIsValid = if ((index.isDigitsOnly() && arrNamesWithIndexies.contains("${arrName}_${index.split("_").last()}"))||(index.split("_").last() in varNames)) true else false
 
                 if (inputExp.length != 0 && index.length != 0 && "-" !in index && indexIsValid) {
 

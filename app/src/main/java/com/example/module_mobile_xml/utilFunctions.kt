@@ -30,12 +30,16 @@ fun replaceSpacesWithCommas(input: String): String {
             stack.add(result.length)
             insideBracket = true
         } else if (c == ']') {
-            val startIndex = stack.removeAt(stack.lastIndex)
-            val endIndex = result.length
-            val substring = result.substring(startIndex, endIndex)
-            result.delete(startIndex, endIndex)
-            result.append(substring.replace(" ", ","))
-            insideBracket = stack.isNotEmpty()
+            try {
+                val startIndex = stack.removeAt(stack.lastIndex)
+                val endIndex = result.length
+                val substring = result.substring(startIndex, endIndex)
+                result.delete(startIndex, endIndex)
+                result.append(substring.replace(" ", ","))
+                insideBracket = stack.isNotEmpty()
+            }catch (e:IndexOutOfBoundsException){
+                return result.toString()
+            }
         }
 
         if (insideBracket) {
@@ -48,7 +52,6 @@ fun replaceSpacesWithCommas(input: String): String {
 
     return result.toString()
 }
-
 fun checkNames(){
     for (name in varNames){
         if (name  !in str.split(" ")){
@@ -103,7 +106,7 @@ fun toReversePolishNotation(expression: String): String {
     for (token in expression.split(" ")) {
         when {
             token.matches(Regex("\\d+")) -> outputQueue.add(token) // Если токен - число, добавляем его в очередь вывода
-            token in varNames || token in arrNamesWithIndexies || (arrNames.contains(token.split("_").first()) && varNames.contains(token.split("_").last()) && arrNamesWithIndexies.contains("${token.split("_").first()}_${variablesMap[token.split("_").last()]}")) -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
+            token in varNames || token in arrNamesWithIndexies || (arrNames.contains(token.split("_").first()) && varNames.contains(token.split("_").last())) -> outputQueue.add(token) // Если токен - название переменной, добавляем его в очередь вывода
             operators.containsKey(token) -> { // Если токен - оператор
                 while (!operatorStack.isEmpty() && operators[operatorStack.peek()] ?: 0 >= operators[token] ?: 0) {
                     outputQueue.add(operatorStack.pop()) // Извлекаем операторы из стека и добавляем их в очередь вывода

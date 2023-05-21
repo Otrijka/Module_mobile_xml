@@ -42,6 +42,10 @@
     <color name="while_block">#30FFB7</color>
     <color name="endwhile_block">#30FFB7</color>
 
+    <!-- for blocks colors -->
+    <color name="for_block">#6F41EF</color>
+    <color name="endFor_block">#6F41EF</color>
+
     <!-- border color -->
     <color name="border_color">#000000</color>
 

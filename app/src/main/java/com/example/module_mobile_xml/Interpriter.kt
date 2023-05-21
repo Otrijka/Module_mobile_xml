@@ -19,8 +19,8 @@ var outPutList = ArrayList<String>()
 
 fun compile() {
 
-    //Log.d("app", "-----------------\nCompile starting")
-    //Log.d("app", "Str: " + str)
+    Log.d("app", "-----------------\nCompile starting")
+    Log.d("app", "Str: " + str)
     outPutList.clear()
 
     if (str != "") {
@@ -73,7 +73,8 @@ fun parseStr(string: String) {
             "<=",
             "==",
             "endIf",
-            "endWhile"
+            "endWhile",
+            "endFor"
         )
 
     fun popAtStack(varStack: Stack<String>): String {
@@ -252,6 +253,15 @@ fun parseStr(string: String) {
                     if (flag == true) {
                         parseStr(DO)
                         parseStr("$logicExpression $DO endWhile")
+                    }
+                }
+                "endFor" ->{
+                    val DO = varStack.pop()
+                    val logicExpression = varStack.pop()
+                    val flag = parseLogicExperssion(logicExpression).toBoolean()
+                    if (flag == true) {
+                        parseStr(DO)
+                        parseStr("$logicExpression $DO endFor")
                     }
                 }
             }
