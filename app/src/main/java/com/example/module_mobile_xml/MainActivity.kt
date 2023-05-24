@@ -1,16 +1,12 @@
 package com.example.module_mobile_xml
 
-import android.content.ClipData.Item
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.view.GravityCompat
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import checkNames
 import com.example.module_mobile_xml.databinding.ActivityMainBinding
@@ -18,11 +14,16 @@ import com.example.module_mobile_xml.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    var commonGuideReaded = false
     override fun onCreate(savedInstanceState: Bundle?) {
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        if (commonGuideReaded == false){
+            openFragment(GuideFragment.newInstance(R.string.guide_text))
+            commonGuideReaded = true
+        }
 
         fun makeCustomBlock(
             operatorName: String,
@@ -219,6 +220,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        commonGuideReaded = false
+    }
     //Открытие фрагмента с закрытием drawer`a
     private fun openFragment(fragment: Fragment, idHolder: Int = R.id.blockSettingsFragment) {
         val transaction = supportFragmentManager.beginTransaction()
