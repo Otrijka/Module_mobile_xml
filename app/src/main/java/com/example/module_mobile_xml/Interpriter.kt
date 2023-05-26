@@ -72,6 +72,7 @@ fun parseStr(string: String) {
             "<",
             "<=",
             "==",
+            "!=",
             "endIf",
             "endWhile",
             "endFor"
@@ -89,6 +90,7 @@ fun parseStr(string: String) {
                 "<",
                 "<=",
                 "==",
+                "!=",
             )
         var str = string.replace(",", " ").trim().drop(1).dropLast(1)
 
@@ -125,6 +127,11 @@ fun parseStr(string: String) {
                         val rightVar = popAtStack(varStack)
                         val leftVar = popAtStack(varStack)
                         return (leftVar.toLong() == rightVar.toLong()).toString()
+                    }
+                    "!=" -> {
+                        val rightVar = popAtStack(varStack)
+                        val leftVar = popAtStack(varStack)
+                        return (leftVar.toLong() != rightVar.toLong()).toString()
                     }
                 }
             }
@@ -218,6 +225,11 @@ fun parseStr(string: String) {
                     val leftVar = popAtStack(varStack)
                     varStack.push((leftVar.toLong() == rightVar.toLong()).toString())
                 }
+                "!=" -> {
+                    val rightVar = popAtStack(varStack)
+                    val leftVar = popAtStack(varStack)
+                    varStack.push((leftVar.toLong() == rightVar.toLong()).toString())
+                }
                 "print" -> {
                     val rightVar = varStack.pop()
                     outPutList.add(variablesMap[rightVar].toString())
@@ -237,7 +249,7 @@ fun parseStr(string: String) {
                 "endIf" -> {
                     var ELSE = varStack.pop()
                     var THEN = varStack.pop()
-                    var FLAG = varStack.pop().toBoolean()
+                    val FLAG = varStack.pop().toBoolean()
                     if (FLAG == true) {
                         THEN = THEN.replace(",", " ").trim()
                         parseStr(THEN)
